@@ -127,11 +127,13 @@ if (submitBtn) {
             return;
         }
 
-        document.getElementById("thankyou").style.display = "flex";
+        const thankyou = document.getElementById("thankyou");
 
-        document.getElementById("thankyou").scrollIntoView({
-            behavior: "smooth"
-        });
+thankyou.classList.add("show");
+
+thankyou.scrollIntoView({
+    behavior: "smooth"
+});
 
     });
 
