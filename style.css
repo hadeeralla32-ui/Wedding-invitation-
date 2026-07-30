@@ -36,7 +36,7 @@ body{
 
 .page{
 
-    min-height:90vh;
+    min-height:70vh;
 
     width:100%;
 
@@ -48,7 +48,7 @@ body{
 
     text-align:center;
 
-    padding:20px;
+    padding:10px;
 
     position:relative;
 
