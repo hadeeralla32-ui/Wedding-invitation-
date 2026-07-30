@@ -23,20 +23,27 @@ if (guestName) {
 }
 // Countdown
 
-const weddingDate = new Date(2026, 8, 15, 19, 0, 0).getTime();
-const countdown = setInterval(function(){
+const weddingDate = new Date(2026, 8, 15, 19, 0, 0);
 
-    const now = new Date().getTime();
+function updateCountdown() {
+
+    const now = new Date();
     const distance = weddingDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    if (distance <= 0) return;
 
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours + " (" + distance + ")";
-    document.getElementById("minutes").innerHTML = minutes;
-    document.getElementById("seconds").innerHTML = seconds;
+    const totalSeconds = Math.floor(distance / 1000);
 
-}, 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
