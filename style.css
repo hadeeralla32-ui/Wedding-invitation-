@@ -107,3 +107,9 @@ h1{
         transform:translateY(0);
     }
 }
+#guestMessage{
+    font-size:40px;
+    color:#b58b64;
+    font-family:Georgia, serif;
+    margin-bottom:20px;
+}
