@@ -35,7 +35,7 @@ const countdown = setInterval(function(){
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("hours").innerHTML = hours + " (" + distance + ")";
     document.getElementById("minutes").innerHTML = minutes;
     document.getElementById("seconds").innerHTML = seconds;
 
