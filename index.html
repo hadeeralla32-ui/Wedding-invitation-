@@ -1,164 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Basem & Hadeer Wedding</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-
-body{
-    margin:0;
-    background:#f8f5f1;
-    color:#5a4a42;
-    font-family:'Cormorant Garamond', serif;
-}
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:30px;
-}
-
-.card{
-    max-width:700px;
-}
-
-.small{
-    font-size:20px;
-    letter-spacing:5px;
-    text-transform:uppercase;
-    color:#b58b64;
-}
-
-h1{
-    font-size:72px;
-    font-weight:600;
-    line-height:0.95;
-    margin:12px 0;
-}
-
-.and{
-    font-size:50px;
-    color:#c49a6c;
-    margin:10px 0;
-}
-
-.subtitle{
-    font-size:28px;
-    margin-top:25px;
-}
-
-.date{
-    font-size:26px;
-    margin-top:18px;
-}
-
-.button{
-    display:inline-block;
-    margin-top:45px;
-    padding:18px 45px;
-    background:#c49a6c;
-    color:#fff;
-    text-decoration:none;
-    border-radius:50px;
-    font-size:24px;
-}
-
-@media(max-width:700px){
-    h1{
-        font-size:52px;
-    }
-
-    .subtitle,
-    .date{
-        font-size:22px;
-    }
-
-    .button{
-        font-size:20px;
-    }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<section class="hero">
-<div class="card">
+<!-- COVER PAGE -->
 
-<p class="small">Together with their families</p>
+<section class="page cover" id="cover">
 
-<h1>Basem</h1>
+    <div class="content">
 
-<div class="and">&</div>
+        <h1>Basem</h1>
 
-<h1>Hadeer</h1>
+        <div class="amp">&</div>
 
-<p class="subtitle">
-Request the pleasure of your company
-</p>
+        <h1>Hadeer</h1>
 
-<p class="date">Tuesday, September 15, 2026</p>
+        <p class="date">
+            15 September 2026
+        </p>
 
-<p class="date">7:00 PM</p>
+        <button id="openInvitation">
+            Open Invitation
+        </button>
 
-<button id="openInvitation" class="button">
-Open Invitation
-</button>
-</div>
-</section>
-<section id="invitation" style="padding:80px 30px;background:white;text-align:center;">
-<div id="guestMessage" class="subtitle"></div>
-<h2 style="font-size:40px;color:#b58b64;">
-You're Invited
-</h2>
-
-<p style="font-size:22px;">
-We would be honored to celebrate our wedding with you.
-</p>
-
-<br>
-
-<h3>📅 Tuesday, September 15, 2026</h3>
-
-<h3>🕖 7:00 PM</h3>
-
-<h3>📍 Cairo, Egypt</h3>
-    <div id="countdown">
-    <div>
-        <span id="days">0</span>
-        <small>Days</small>
     </div>
-
-    <div>
-        <span id="hours">0</span>
-        <small>Hours</small>
-    </div>
-
-    <div>
-        <span id="minutes">0</span>
-        <small>Minutes</small>
-    </div>
-
-    <div>
-        <span id="seconds">0</span>
-        <small>Seconds</small>
-    </div>
-</div>
-
-<p>
-    With love,<br>
-    Basem & Hadeer ❤️
-</p>
 
 </section>
+
+
+
+<!-- WELCOME PAGE -->
+
+<section class="page welcome" id="welcome">
+
+    <div class="content">
+
+        <p id="guestMessage">
+            Dear Guest,
+        </p>
+
+        <h2>
+            You're Invited
+        </h2>
+
+        <p>
+            We are delighted to invite you
+            to celebrate the beginning
+            of our forever.
+        </p>
+
+        <span>
+            ↓ Scroll
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- DETAILS PAGE -->
+
+<section class="page details" id="details">
+
+    <div class="content">
+
+        <h2>
+            Wedding Countdown
+        </h2>
+
+
+        <div class="countdown">
+
+            <div class="box">
+                <span id="days">0</span>
+                <small>Days</small>
+            </div>
+
+            <div class="box">
+                <span id="hours">0</span>
+                <small>Hours</small>
+            </div>
+
+            <div class="box">
+                <span id="minutes">0</span>
+                <small>Min</small>
+            </div>
+
+            <div class="box">
+                <span id="seconds">0</span>
+                <small>Sec</small>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+        <!-- CALENDAR CARD -->
+
+        <div class="calendar-card">
+
+            <h3>September 2026</h3>
+
+            <div class="month">
+                SEP
+            </div>
+
+            <div class="day">
+                ❤️ 15
+            </div>
+
+            <p>
+                Tuesday
+            </p>
+
+            <p>
+                7:00 PM
+            </p>
+
+        </div>
+
+
+
+        <!-- TIMELINE -->
+
+        <div class="timeline">
+
+            <div>
+                ⏳
+                <span>Countdown</span>
+            </div>
+
+            <div>
+                📅
+                <span>Date</span>
+            </div>
+
+            <div>
+                📍
+                <span>Location</span>
+            </div>
+
+            <div>
+                ❤️
+                <span>RSVP</span>
+            </div>
+
+        </div>
+
+
+
+        <!-- LOCATION -->
+
+        <a 
+        class="location-card"
+        href="https://maps.google.com"
+        target="_blank">
+
+            <h3>
+                📍 Ramage Hotel
+            </h3>
+
+            <p>
+                Andalusia Hall
+            </p>
+
+            <span>
+                Tap to Navigate
+            </span>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+
+<!-- RSVP PAGE -->
+
+<section class="page rsvp" id="rsvp">
+
+    <div class="content">
+
+        <h2>
+            RSVP
+        </h2>
+
+
+        <label>
+            Full Name
+        </label>
+
+        <input 
+        type="text"
+        id="fullName"
+        placeholder="Your Name">
+
+
+        <h3>
+            Will Attend
+        </h3>
+
+
+        <label>
+            <input 
+            type="radio"
+            name="attend"
+            value="Yes">
+            Yes
+        </label>
+
+
+        <label>
+            <input 
+            type="radio"
+            name="attend"
+            value="No">
+            No
+        </label>
+
+
+
+        <label>
+            Guests
+        </label>
+
+
+        <select id="guests">
+
+            <option>
+                1
+            </option>
+
+            <option>
+                2
+            </option>
+
+            <option>
+                3
+            </option>
+
+            <option>
+                4
+            </option>
+
+        </select>
+
+
+
+        <label>
+            Leave a Wish
+        </label>
+
+
+        <textarea 
+        id="wish">
+        </textarea>
+
+
+        <button id="submitRSVP">
+            Submit
+        </button>
+
+
+    </div>
+
+</section>
+<!-- THANK YOU PAGE -->
+
+<section class="page thankyou" id="thankyou">
+
+    <div class="content">
+
+        <div class="heart">
+            🤍
+        </div>
+
+        <h2>
+            Thank You!
+        </h2>
+
+        <p>
+            Your response has been
+            received successfully.
+        </p>
+
+        <p>
+            We can't wait to celebrate
+            our special day with you.
+        </p>
+
+        <h3>
+            Basem ❤️ Hadeer
+        </h3>
+
+    </div>
+
+</section>
+
+
+
 <script src="script.js"></script>
+
 </body>
+
 </html>
