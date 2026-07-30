@@ -23,7 +23,7 @@ if (guestName) {
 }
 // Countdown
 
-const weddingDate = new Date(2026, 8, 15, 19, 0, 0);
+const weddingDate = new Date("2026-09-15T19:00:00+03:00");
 
 function updateCountdown() {
 
