@@ -110,7 +110,9 @@ const submitBtn = document.getElementById("submitRSVP");
 
 if (submitBtn) {
 
-    submitBtn.addEventListener("click", function () {
+    submitBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();
 
         const fullName = document.getElementById("fullName").value.trim();
 
