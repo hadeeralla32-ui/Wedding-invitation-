@@ -1,4 +1,11 @@
 // ===============================
+// EMAILJS
+// ===============================
+
+emailjs.init({
+    publicKey: "8CODcg2pO5J4zQTkK",
+});
+// ===============================
 // OPEN INVITATION
 // ===============================
 
@@ -112,11 +119,15 @@ if (submitBtn) {
 
     submitBtn.addEventListener("click", function (e) {
 
-    e.preventDefault();
+        e.preventDefault();
 
         const fullName = document.getElementById("fullName").value.trim();
 
         const attend = document.querySelector('input[name="attend"]:checked');
+
+        const guests = document.getElementById("guests").value;
+
+        const wish = document.getElementById("wish").value.trim();
 
         if (fullName === "") {
 
@@ -134,15 +145,41 @@ if (submitBtn) {
 
         }
 
-        document.getElementById("thankyou").style.display = "flex";
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
 
-        document.getElementById("thankyou").scrollIntoView({
+        emailjs.send(
+            "service_en4wlao",
+            "template_p6x3mhr",
+            {
+                fullName: fullName,
+                attendance: attend.value,
+                guests: guests,
+                wish: wish
+            }
+        ).then(function () {
 
-            behavior: "smooth"
+            document.getElementById("thankyou").style.display = "flex";
+
+            document.getElementById("thankyou").scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }).catch(function (error) {
+
+            console.log(error);
+
+            alert("Sorry, something went wrong. Please try again.");
+
+        }).finally(function () {
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit";
 
         });
 
     });
+
 }
 // ===============================
 // SHOW FIRST PAGE
