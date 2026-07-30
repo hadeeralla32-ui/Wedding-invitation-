@@ -40,7 +40,7 @@ function updateCountdown() {
     const seconds = totalSeconds % 60;
 
     document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
+    document.getElementById("hours").textContent = now.getHours() + " / " + hours;
     document.getElementById("minutes").textContent = minutes;
     document.getElementById("seconds").textContent = seconds;
 }
