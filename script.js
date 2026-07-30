@@ -19,6 +19,5 @@ const guestName = params.get("guest");
 
 if (guestName) {
     guestMessage.innerHTML =
-    `Dear ${guestName},<br><br>
-    You are warmly invited to celebrate the beginning of our forever.`;
+`Dear ${guestName},`;
 }
