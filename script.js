@@ -136,12 +136,3 @@ if (submitBtn) {
     });
 
 }
-// ===============================
-// SHOW FIRST PAGE
-// ===============================
-
-window.addEventListener("load", () => {
-
-    document.getElementById("cover").classList.add("show");
-
-});
