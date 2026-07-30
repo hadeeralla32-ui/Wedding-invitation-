@@ -112,9 +112,29 @@ if (submitBtn) {
 
     submitBtn.addEventListener("click", function () {
 
-        const thankYou = document.getElementById("thankyou");
+        const fullName = document.getElementById("fullName").value.trim();
 
-        thankYou.scrollIntoView({
+        const attend = document.querySelector('input[name="attend"]:checked');
+
+        if (fullName === "") {
+
+            alert("Please enter your name.");
+
+            return;
+
+        }
+
+        if (!attend) {
+
+            alert("Please choose if you will attend.");
+
+            return;
+
+        }
+
+        document.getElementById("thankyou").style.display = "flex";
+
+        document.getElementById("thankyou").scrollIntoView({
 
             behavior: "smooth"
 
