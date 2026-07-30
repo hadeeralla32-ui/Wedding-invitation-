@@ -1,78 +1,104 @@
-// Open Invitation button
+// ===============================
+// OPEN INVITATION
+// ===============================
 
-const openButton = document.getElementById("openInvitation");
-const invitation = document.getElementById("invitation");
+const openBtn = document.getElementById("openInvitation");
+const cover = document.getElementById("cover");
 
-openButton.addEventListener("click", function () {
-    invitation.scrollIntoView({
-        behavior: "smooth"
+if (openBtn) {
+
+    openBtn.addEventListener("click", () => {
+
+        cover.style.transition = "1s";
+
+        cover.style.transform = "translateY(-100%)";
+
+        cover.style.opacity = "0";
+
+        setTimeout(() => {
+
+            cover.style.display = "none";
+
+            window.scrollTo({
+                top: document.getElementById("welcome").offsetTop,
+                behavior: "smooth"
+            });
+
+        }, 900);
+
     });
-});
+
+}
 
 
-// Guest name from URL
+
+// ===============================
+// GUEST NAME
+// ===============================
+
+const params = new URLSearchParams(window.location.search);
+
+const guest = params.get("guest");
 
 const guestMessage = document.getElementById("guestMessage");
 
-const params = new URLSearchParams(window.location.search);
-const guestName = params.get("guest");
+if (guestMessage) {
 
-if (guestName) {
-    guestMessage.textContent = `Dear ${guestName},`;
-}
+    if (guest) {
 
+        guestMessage.innerHTML = `Dear ${guest},`;
 
-// Countdown
+    } else {
 
-const weddingDate = new Date("2026-09-15T19:00:00+03:00").getTime();
+        guestMessage.innerHTML = "Dear Guest,";
 
-function updateCountdown() {
-
-    const now = Date.now();
-    const distance = weddingDate - now;
-
-    if (distance <= 0) {
-
-        document.getElementById("days").textContent = 0;
-        document.getElementById("hours").textContent = 0;
-        document.getElementById("minutes").textContent = 0;
-        document.getElementById("seconds").textContent = 0;
-
-        clearInterval(countdown);
-        return;
     }
 
-    const days = Math.floor(distance / 86400000);
-
-const remainingAfterDays = distance - (days * 86400000);
-
-const hours = Math.floor(remainingAfterDays / 3600000);
-
-const remainingAfterHours = remainingAfterDays - (hours * 3600000);
-
-const minutes = Math.floor(remainingAfterHours / 60000);
-
-const seconds = Math.floor((remainingAfterHours % 60000) / 1000);
-
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
 }
 
-updateCountdown();
 
-const countdown = setInterval(updateCountdown, 1000);
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
+
+// ===============================
+// COUNTDOWN
+// ===============================
+
+const weddingDate = new Date("September 15, 2026 19:00:00").getTime();
+
+const timer = setInterval(() => {
+
+    const now = new Date().getTime();
+
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (distance % (1000 * 60)) /
+        1000
+    );
 
     document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
-}
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+    document.getElementById("hours").textContent = hours;
+
+    document.getElementById("minutes").textContent = minutes;
+
+    document.getElementById("seconds").textContent = seconds;
+
+    if (distance < 0) {
+
+        clearInterval(timer);
+
+    }
+
+}, 1000);
