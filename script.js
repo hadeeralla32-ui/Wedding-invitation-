@@ -102,3 +102,24 @@ const timer = setInterval(() => {
     }
 
 }, 1000);
+// ===============================
+// RSVP
+// ===============================
+
+const submitBtn = document.getElementById("submitRSVP");
+
+if (submitBtn) {
+
+    submitBtn.addEventListener("click", function () {
+
+        const thankYou = document.getElementById("thankyou");
+
+        thankYou.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
