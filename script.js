@@ -23,8 +23,7 @@ if (guestName) {
 }
 // Countdown
 
-const weddingDate = new Date("September 15, 2026 19:00:00").getTime();
-
+const weddingDate = new Date(2026, 8, 15, 19, 0, 0).getTime();
 const countdown = setInterval(function(){
 
     const now = new Date().getTime();
