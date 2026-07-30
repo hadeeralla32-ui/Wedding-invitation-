@@ -1,115 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+
+:root{
+    --bg:#f8f4ef;
+    --rose:#c49a6c;
+    --rose-light:#e5c7a5;
+    --text:#5a4a42;
+    --white:#ffffff;
+}
+
+
+*{
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
 body{
+
     margin:0;
-    background:#ffffff;
-    color:#5a4a42;
-    font-family:'Montserrat',sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:'Cormorant Garamond', serif;
+
 }
 
-.hero{
+
+
+.page{
+
     min-height:100vh;
+
+    width:100%;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     text-align:center;
+
     padding:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
 }
 
-.card{
-    max-width:700px;
+
+
+/* soft background effect */
+
+.page::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+
+    height:250px;
+
+    background:rgba(196,154,108,.12);
+
+    border-radius:50%;
+
+    top:-80px;
+
+    right:-80px;
+
 }
-h1{
+
+
+
+.content{
+
+    width:100%;
+
+    max-width:600px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+
+/* COVER */
+
+
+.cover h1{
+
     font-family:'Great Vibes',cursive;
-    font-size:70px;
+
+    font-size:90px;
+
     font-weight:400;
-    color:#b58b64;
-    margin:10px 0;
-}
-.small{
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:#b58b64;
-    font-size:14px;
+
+    color:var(--text);
+
+    margin:0;
+
 }
 
-.and{
-    font-size:40px;
-    color:#b58b64;
+
+.amp{
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:70px;
+
+    color:var(--rose);
+
+    margin:10px;
+
 }
 
-.subtitle{
-    font-size:22px;
-    margin-top:25px;
-}
 
 .date{
-    margin-top:20px;
-    font-size:22px;
-}
 
-.button{
-    display:inline-block;
-    margin-top:40px;
-    padding:18px 40px;
-    background:#c49a6c;
-    color:white;
-    text-decoration:none;
-    border-radius:50px;
-    transition:.3s;
-}
+    font-size:28px;
 
-.button:hover{
-    background:#aa746f;
-}
-
-@media(max-width:700px){
-
-h1{
-    font-size:55px;
-}
-
-.and{
-    font-size:35px;
-}
-
-.small{
-    font-size:12px;
     letter-spacing:2px;
+
+    margin-top:35px;
+
 }
 
-.subtitle{
-    font-size:17px;
+
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    font-family:'Cormorant Garamond',serif;
+
 }
+
+
+#openInvitation,
+#submitRSVP{
+
+
+    margin-top:40px;
+
+    padding:16px 45px;
+
+    background:var(--rose);
+
+    color:white;
+
+    border-radius:50px;
+
+    font-size:22px;
+
+    transition:.3s;
+
+}
+
+
+#openInvitation:hover,
+#submitRSVP:hover{
+
+    transform:translateY(-4px);
+
+}
+
+
+
+/* WELCOME */
+
+
+.welcome h2,
+.details h2,
+.rsvp h2,
+.thankyou h2{
+
+    font-size:55px;
+
+    color:var(--rose);
+
+    margin:20px 0;
+
+}
+
+
+#welcome p,
+.welcome p{
+
+    font-size:25px;
+
+    line-height:1.6;
+
+}
+
+
+
+#guestMessage{
+
+    font-size:30px;
+
+}
+
+
+
+/* COUNTDOWN */
+
+
+.countdown{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:35px;
+
+}
+
+
+
+.box{
+
+    width:90px;
+
+    height:90px;
+
+    background:white;
+
+    border:1px solid var(--rose-light);
+
+    border-radius:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+.box span{
+
+    font-size:35px;
+
+    color:var(--rose);
+
+}
+
+
+.box small{
+
+    font-size:16px;
+
+}
+
+
+
+/* CALENDAR */
+
+
+.calendar-card{
+
+    margin:35px auto;
+
+    width:260px;
+
+    background:white;
+
+    border:1px solid var(--rose-light);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+.calendar-card h3{
+
+    color:var(--rose);
+
+    font-size:25px;
+
+}
+
+
+.month{
+
+    font-size:30px;
+
+    letter-spacing:5px;
+
+}
+
+
+.day{
+
+    margin:25px;
+
+    font-size:40px;
+
+    color:var(--rose);
+
+}
+
+
+
+/* LOCATION */
+
+
+.location-card{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    background:white;
+
+    border:1px solid var(--rose-light);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-top:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+
+.location-card h3{
+
+    color:var(--rose);
+
+    font-size:28px;
+
+}
+
+
+
+/* RSVP */
+
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0 25px;
+
+    border:1px solid var(--rose-light);
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    font-family:inherit;
+
+}
+
+
+textarea{
+
+    height:130px;
+
+}
+
+
+
+/* THANK YOU */
+
+
+.thankyou p{
+
+    font-size:25px;
+
+    line-height:1.6;
+
+}
+
+
+.heart{
+
+    font-size:70px;
+
+}
+
+
+
+/* MOBILE */
+
+
+@media(max-width:600px){
+
+
+.cover h1{
+
+    font-size:65px;
+
+}
+
+
+.amp{
+
+    font-size:50px;
+
+}
+
+
+.welcome h2,
+.details h2,
+.rsvp h2,
+.thankyou h2{
+
+    font-size:42px;
+
+}
+
 
 .date{
-    font-size:18px;
-}
 
-.button{
-    padding:16px 35px;
-    font-size:15px;
-}
+    font-size:22px;
 
 }
-/* Soft entrance animation */
 
-.card{
-    animation: fadeUp 1.5s ease forwards;
-}
 
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-#guestMessage{
-    font-size:40px;
-    color:#b58b64;
-    font-family:Georgia, serif;
-    margin-bottom:20px;
 }
