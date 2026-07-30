@@ -115,60 +115,22 @@ if (submitBtn) {
         e.preventDefault();
 
         const fullName = document.getElementById("fullName").value.trim();
-
         const attend = document.querySelector('input[name="attend"]:checked');
 
-        const guests = document.getElementById("guests").value;
-
-        const wish = document.getElementById("wish").value.trim();
-
         if (fullName === "") {
-
             alert("Please enter your name.");
-
             return;
-
         }
 
         if (!attend) {
-
             alert("Please choose if you will attend.");
-
             return;
-
         }
 
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Sending...";
+        document.getElementById("thankyou").style.display = "flex";
 
-        emailjs.send(
-            "service_en4wlao",
-            "template_p6x3mhr",
-            {
-                fullName: fullName,
-                attendance: attend.value,
-                guests: guests,
-                wish: wish
-            }
-        ).then(function () {
-
-            document.getElementById("thankyou").style.display = "flex";
-
-            document.getElementById("thankyou").scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }).catch(function (error) {
-
-            console.log(error);
-
-            alert("Sorry, something went wrong. Please try again.");
-
-        }).finally(function () {
-
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Submit";
-
+        document.getElementById("thankyou").scrollIntoView({
+            behavior: "smooth"
         });
 
     });
