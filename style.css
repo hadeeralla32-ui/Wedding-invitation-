@@ -453,5 +453,5 @@ textarea{
 
 }
 #thankyou{
-    display:none;
+    display:flex;
 }
