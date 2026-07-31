@@ -159,33 +159,51 @@ mode: "no-cors",
 // FLOATING PETALS
 // ===============================
 
-const petalImages = [
-"https://pngimg.com/uploads/rose_petals/rose_petals_PNG6769.png",
-"https://pngimg.com/uploads/rose_petals/rose_petals_PNG6771.png"
-];
-
-function createPetal(){
+function createPetal() {
 
     const container = document.querySelector(".petals-container");
 
-    if(!container) return;
+    if (!container) return;
 
-    const petal = document.createElement("img");
-
-    petal.src = petalImages[Math.floor(Math.random()*petalImages.length)];
+    const petal = document.createElement("div");
 
     petal.className = "petal";
 
-    petal.style.left = Math.random()*100 + "%";
+    const colors = [
+        "#ffffff",
+        "#FFF8EC",
+        "#F6E2A6",
+        "#E7C86E"
+    ];
 
-    petal.style.width = (18 + Math.random()*22) + "px";
+    const color = colors[Math.floor(Math.random() * colors.length)];
 
-    petal.style.animationDuration = (5 + Math.random()*4) + "s";
+    petal.innerHTML = `
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M20 3
+        C32 5 36 16 27 25
+        C23 29 21 34 20 37
+        C19 34 17 29 13 25
+        C4 16 8 5 20 3Z"
+        fill="${color}"/>
+    </svg>
+    `;
+
+    petal.style.left = Math.random() * 100 + "%";
+
+    const size = 18 + Math.random() * 18;
+
+    petal.style.width = size + "px";
+    petal.style.height = size + "px";
+
+    petal.style.animationDuration =
+        (6 + Math.random() * 3) + "s";
 
     container.appendChild(petal);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         petal.remove();
-    },9000);
+    }, 9000);
 
 }
