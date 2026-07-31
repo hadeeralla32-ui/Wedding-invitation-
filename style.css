@@ -416,7 +416,7 @@ h3{
 
 .petal{
     position: absolute;
-    top: -60px;
+    top: -150px;
     opacity: .9;
     animation: petalFall linear forwards;
     will-change: transform;
@@ -426,7 +426,7 @@ h3{
 
     0%{
         transform:
-            translateY(-60px)
+            translateY(-150px)
             translateX(0px)
             rotate(0deg);
         opacity:0;
