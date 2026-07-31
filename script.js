@@ -127,7 +127,11 @@ mode: "no-cors",
     rsvp.style.display = "none";
 
     thankyou.style.display = "flex";
+for(let i=0;i<25;i++){
 
+    setTimeout(createHeart,i*120);
+
+    }
     thankyou.scrollIntoView({
         behavior: "smooth"
     });
@@ -149,3 +153,28 @@ mode: "no-cors",
     });
 
 });
+// ===============================
+// FLOATING HEARTS
+// ===============================
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart-float";
+
+    heart.innerHTML = "🤍";
+
+    heart.style.left = Math.random() * 100 + "%";
+
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 4000);
+
+}
