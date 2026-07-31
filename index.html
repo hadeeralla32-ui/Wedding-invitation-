@@ -2,257 +2,218 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Basem & Hadeer Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<!-- COVER PAGE -->
+<!-- COVER -->
 
-<section class="page cover" id="cover">
+<section id="cover" class="screen cover">
 
-    <div class="content">
+<div class="content">
 
-        <h1>Basem</h1>
+<h1>Basem</h1>
 
-        <div class="amp">&</div>
+<div class="amp">&</div>
 
-        <h1>Hadeer</h1>
+<h1>Hadeer</h1>
 
-        <p class="date">
-            15 September 2026
-        </p>
+<p class="date">
+15 September 2026
+</p>
 
-        <button id="openInvitation">
-            Open Invitation
-        </button>
+<button id="openInvitation">
+Open Invitation
+</button>
 
-    </div>
-
-</section>
-
-
-
-<!-- WELCOME PAGE -->
-
-<section class="page welcome" id="welcome">
-
-    <div class="content">
-
-        <p id="guestMessage">
-            Dear Guest,
-        </p>
-
-        <h2>
-            You're Invited
-        </h2>
-
-        <p>
-            We are delighted to invite you
-            to celebrate the beginning
-            of our forever.
-        </p>
-
-        <span>
-            ↓ Scroll
-        </span>
-
-    </div>
-
-</section>
-
-
-
-<!-- DETAILS PAGE -->
-
-<section class="page details" id="details">
-
-    <div class="content">
-
-        <h2>
-            Wedding Countdown
-        </h2>
-
-
-        <div class="countdown">
-
-            <div class="box">
-                <span id="days">0</span>
-                <small>Days</small>
-            </div>
-
-            <div class="box">
-                <span id="hours">0</span>
-                <small>Hours</small>
-            </div>
-
-            <div class="box">
-                <span id="minutes">0</span>
-                <small>Min</small>
-            </div>
-
-            <div class="box">
-                <span id="seconds">0</span>
-                <small>Sec</small>
-            </div>
-
-        </div>
-
-
-    </div>
-
-        <!-- LOCATION -->
-
-        <a 
-        class="location-card"
-        href="https://maps.google.com"
-        target="_blank">
-
-            <h3>
-                📍 Ramage Hotel
-            </h3>
-
-            <p>
-                Andalusia Hall
-            </p>
-
-            <span>
-                Tap to Navigate
-            </span>
-
-        </a>
 </div>
+
 </section>
+<!-- WELCOME -->
 
-<!-- RSVP PAGE -->
+<section id="welcome" class="screen hidden">
 
-<section class="page rsvp" id="rsvp">
+<div class="content">
 
-    <div class="content">
+<p id="guestMessage">
+Dear Guest,
+</p>
 
-        <h2>
-            RSVP
-        </h2>
+<h2>
+You're Invited
+</h2>
 
+<p>
 
-        <label>
-            Full Name
-        </label>
+Together with our families,
 
-        <input 
-        type="text"
-        id="fullName"
-        placeholder="Your Name">
+we joyfully invite you
 
+to celebrate our wedding.
 
-        <h3>
-    Will Attend
-</h3>
+</p>
+
+<div class="scroll">
+
+↓
+
+</div>
+
+</div>
+
+</section>
+<!-- DETAILS -->
+
+<section id="details" class="screen hidden">
+
+<div class="content">
+
+<h2>
+Wedding Countdown
+</h2>
+
+<div class="countdown">
+
+<div class="box">
+<span id="days">0</span>
+<small>Days</small>
+</div>
+
+<div class="box">
+<span id="hours">0</span>
+<small>Hours</small>
+</div>
+
+<div class="box">
+<span id="minutes">0</span>
+<small>Minutes</small>
+</div>
+
+<div class="box">
+<span id="seconds">0</span>
+<small>Seconds</small>
+</div>
+
+</div>
+
+<a class="location-card"
+href="https://maps.google.com"
+target="_blank">
+
+<h3>📍 Ramage Hotel</h3>
+
+<p>Andalusia Hall</p>
+
+<span>Tap to Navigate</span>
+
+</a>
+
+</div>
+
+</section>
+<!-- RSVP -->
+
+<section id="rsvp" class="screen hidden">
+
+<div class="content">
+
+<h2>RSVP</h2>
+
+<label>Full Name</label>
+
+<input
+type="text"
+id="fullName"
+placeholder="Your Name">
+
+<h3>Will Attend</h3>
 
 <label>
-    <input
-        type="radio"
-        name="attend"
-        value="Yes">
-    Yes
-</label>
-
-<br>
-
-<label>
-    <input
-        type="radio"
-        name="attend"
-        value="No">
-    No
+<input
+type="radio"
+name="attend"
+value="Yes">
+Yes
 </label>
 
 <br><br>
 
 <label>
-    Guests
+<input
+type="radio"
+name="attend"
+value="No">
+No
 </label>
 
+<br><br>
 
-        <select id="guests">
+<label>Guests</label>
 
-            <option>
-                1
-            </option>
+<select id="guests">
 
-            <option>
-                2
-            </option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
 
-            <option>
-                3
-            </option>
+</select>
 
-            <option>
-                4
-            </option>
+<label>Leave a Wish</label>
 
-        </select>
+<textarea id="wish"></textarea>
 
+<button id="submitRSVP">
 
+Submit
 
-        <label>
-            Leave a Wish
-        </label>
+</button>
 
-
-        <textarea 
-        id="wish">
-        </textarea>
-
-
-        <button id="submitRSVP">
-            Submit
-        </button>
-
-
-    </div>
+</div>
 
 </section>
-<!-- THANK YOU PAGE -->
+<!-- THANK YOU -->
 
-<section class="page thankyou" id="thankyou">
+<section id="thankyou" class="screen hidden">
 
-    <div class="content">
+<div class="content">
 
-        <div class="heart">
-            🤍
-        </div>
+<div class="heart">
+🤍
+</div>
 
-        <h2>
-            Thank You!
-        </h2>
+<h2>
+Thank You!
+</h2>
 
-        <p>
-            Your response has been
-            received successfully.
-        </p>
+<p>
+Your response has been received successfully.
+</p>
 
-        <p>
-            We can't wait to celebrate
-            our special day with you.
-        </p>
+<p>
+We can't wait to celebrate our special day with you.
+</p>
 
-        <h3>
-            Basem ❤️ Hadeer
-        </h3>
+<h3>
+Basem ❤️ Hadeer
+</h3>
 
-    </div>
+</div>
 
 </section>
-
-
 
 <script src="script.js"></script>
 
