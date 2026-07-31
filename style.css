@@ -22,18 +22,13 @@ html{
 
 body{
     background:
-        radial-gradient(circle at top left,
-        rgba(216,178,110,.12),
-        transparent 35%),
+        linear-gradient(rgba(255,255,255,.55), rgba(255,255,255,.55)),
+        url("Cover.jpg");
 
-        radial-gradient(circle at bottom right,
-        rgba(200,160,107,.10),
-        transparent 35%),
-
-        linear-gradient(
-        180deg,
-        var(--bg),
-        var(--bg2));
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
 
     color:var(--text);
     font-family:'Cormorant Garamond',serif;
