@@ -178,13 +178,9 @@ function createPetal() {
 
     petal.style.left = Math.random() * 100 + "%";
 
-    const size = 18 + Math.random() * 18;
-
-    petal.style.width = size + "px";
+    petal.style.width = (20 + Math.random() * 18) + "px";
 
     petal.style.animationDuration = (6 + Math.random() * 3) + "s";
-
-    petal.style.transform = `rotate(${Math.random()*360}deg)`;
 
     container.appendChild(petal);
 
