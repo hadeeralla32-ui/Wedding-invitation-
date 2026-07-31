@@ -107,7 +107,7 @@ submitBtn.addEventListener("click", function (e) {
     fetch("https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec", {
 
         method: "POST",
-
+mode: "no-cors",
         body: JSON.stringify({
 
             fullName: fullName,
