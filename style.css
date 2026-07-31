@@ -422,21 +422,44 @@ h3{
 @keyframes petalFall{
 
     0%{
-        transform: translateY(-60px) translateX(0px) rotate(0deg);
-        opacity: 0;
+        transform:
+            translateY(-60px)
+            translateX(0px)
+            rotate(0deg);
+        opacity:0;
     }
 
     10%{
-        opacity: 1;
+        opacity:1;
+    }
+
+    25%{
+        transform:
+            translateY(25vh)
+            translateX(18px)
+            rotate(90deg);
     }
 
     50%{
-        transform: translateY(50vh) translateX(30px) rotate(180deg);
+        transform:
+            translateY(55vh)
+            translateX(-22px)
+            rotate(180deg);
+    }
+
+    75%{
+        transform:
+            translateY(85vh)
+            translateX(20px)
+            rotate(270deg);
     }
 
     100%{
-        transform: translateY(120vh) translateX(-30px) rotate(360deg);
-        opacity: 0;
+        transform:
+            translateY(120vh)
+            translateX(-15px)
+            rotate(360deg);
+        opacity:0;
     }
 
 }
