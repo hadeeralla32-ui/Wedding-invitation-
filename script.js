@@ -122,20 +122,14 @@ mode: "no-cors",
 
     })
 
-.then((response) => {
+.then(() => {
 
-    console.log(response);
-
-    rsvp.classList.add("hidden");
-
-    thankyou.classList.remove("hidden");
+    rsvp.style.display = "none";
 
     thankyou.style.display = "flex";
 
     thankyou.scrollIntoView({
-
         behavior: "smooth"
-
     });
 
 })
