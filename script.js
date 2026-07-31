@@ -17,14 +17,18 @@ if (openBtn) {
 
         setTimeout(() => {
 
-            cover.style.display = "none";
+    cover.style.display = "none";
 
-            window.scrollTo({
-                top: document.getElementById("welcome").offsetTop,
-                behavior: "smooth"
-            });
+    document.getElementById("welcome").style.display = "flex";
+    document.getElementById("details").style.display = "flex";
+    document.getElementById("rsvp").style.display = "flex";
 
-        }, 900);
+    window.scrollTo({
+        top: document.getElementById("welcome").offsetTop,
+        behavior: "smooth"
+    });
+
+}, 900);
 
     });
 
