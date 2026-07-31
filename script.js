@@ -189,3 +189,27 @@ function createPetal() {
     }, 9000);
 
 }
+const weddingMusic = document.getElementById("weddingMusic");
+const musicBtn = document.getElementById("musicBtn");
+const openBtn = document.getElementById("openInvitation");
+
+if (openBtn) {
+    openBtn.addEventListener("click", () => {
+        weddingMusic.play();
+        musicBtn.innerHTML = "🔊";
+    });
+}
+
+if (musicBtn) {
+    musicBtn.addEventListener("click", () => {
+
+        if (weddingMusic.paused) {
+            weddingMusic.play();
+            musicBtn.innerHTML = "🔊";
+        } else {
+            weddingMusic.pause();
+            musicBtn.innerHTML = "🔇";
+        }
+
+    });
+}
