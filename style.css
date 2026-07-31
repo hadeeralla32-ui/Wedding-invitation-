@@ -365,7 +365,7 @@ button{
 /* RSVP */
 
 
-input,
+input:not([type="radio"]),
 select,
 textarea{
 
