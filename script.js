@@ -154,27 +154,31 @@ for(let i=0;i<25;i++){
 
 });
 // ===============================
-// FLOATING HEARTS
+// FLOATING FLOWERS
 // ===============================
 
-function createHeart() {
+function createFlower() {
 
-    const heart = document.createElement("div");
+    const flower = document.createElement("div");
 
-    heart.className = "heart-float";
+    flower.className = "flower";
 
-    heart.innerHTML = "🤍";
+    const flowers = ["🤍","🌼","🌸","✨"];
 
-    heart.style.left = Math.random() * 100 + "%";
+    flower.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
 
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    flower.style.left = Math.random() * 100 + "%";
 
-    document.getElementById("hearts").appendChild(heart);
+    flower.style.fontSize = (18 + Math.random()*16) + "px";
+
+    flower.style.animationDuration = (4 + Math.random()*2) + "s";
+
+    document.getElementById("hearts").appendChild(flower);
 
     setTimeout(() => {
 
-        heart.remove();
+        flower.remove();
 
-    }, 4000);
+    },6000);
 
 }
