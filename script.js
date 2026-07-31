@@ -127,11 +127,13 @@ mode: "no-cors",
     rsvp.style.display = "none";
 
     thankyou.style.display = "flex";
-for(let i=0;i<25;i++){
 
-    setTimeout(createHeart,i*120);
+    for(let i = 0; i < 30; i++){
+
+        setTimeout(createPetal, i * 250);
 
     }
+
     thankyou.scrollIntoView({
         behavior: "smooth"
     });
@@ -154,31 +156,36 @@ for(let i=0;i<25;i++){
 
 });
 // ===============================
-// FLOATING FLOWERS
+// FLOATING PETALS
 // ===============================
 
-function createFlower() {
+const petalImages = [
+"https://pngimg.com/uploads/rose_petals/rose_petals_PNG6769.png",
+"https://pngimg.com/uploads/rose_petals/rose_petals_PNG6771.png"
+];
 
-    const flower = document.createElement("div");
+function createPetal(){
 
-    flower.className = "flower";
+    const container = document.querySelector(".petals-container");
 
-    const flowers = ["🤍","🌼","🌸","✨"];
+    if(!container) return;
 
-    flower.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
+    const petal = document.createElement("img");
 
-    flower.style.left = Math.random() * 100 + "%";
+    petal.src = petalImages[Math.floor(Math.random()*petalImages.length)];
 
-    flower.style.fontSize = (18 + Math.random()*16) + "px";
+    petal.className = "petal";
 
-    flower.style.animationDuration = (4 + Math.random()*2) + "s";
+    petal.style.left = Math.random()*100 + "%";
 
-    document.getElementById("hearts").appendChild(flower);
+    petal.style.width = (18 + Math.random()*22) + "px";
 
-    setTimeout(() => {
+    petal.style.animationDuration = (5 + Math.random()*4) + "s";
 
-        flower.remove();
+    container.appendChild(petal);
 
-    },6000);
+    setTimeout(()=>{
+        petal.remove();
+    },9000);
 
 }
