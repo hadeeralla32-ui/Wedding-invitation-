@@ -2,38 +2,26 @@
 // OPEN INVITATION
 // ===============================
 
-const openBtn = document.getElementById("openInvitation");
 const cover = document.getElementById("cover");
+const welcome = document.getElementById("welcome");
+const details = document.getElementById("details");
+const rsvp = document.getElementById("rsvp");
+const thankyou = document.getElementById("thankyou");
 
-if (openBtn) {
-
-    openBtn.addEventListener("click", () => {
-
-        cover.style.transition = "1s";
-
-        cover.style.transform = "translateY(-100%)";
-
-        cover.style.opacity = "0";
-
-        setTimeout(() => {
+document.getElementById("openInvitation").addEventListener("click", () => {
 
     cover.style.display = "none";
 
-    document.getElementById("welcome").style.display = "flex";
-    document.getElementById("details").style.display = "flex";
-    document.getElementById("rsvp").style.display = "flex";
+    welcome.classList.remove("hidden");
+    details.classList.remove("hidden");
+    rsvp.classList.remove("hidden");
 
     window.scrollTo({
-        top: document.getElementById("welcome").offsetTop,
+        top: welcome.offsetTop,
         behavior: "smooth"
     });
 
-}, 900);
-
-    });
-
-}
-
+});
 
 
 // ===============================
@@ -44,22 +32,12 @@ const params = new URLSearchParams(window.location.search);
 
 const guest = params.get("guest");
 
-const guestMessage = document.getElementById("guestMessage");
+if (guest) {
 
-if (guestMessage) {
-
-    if (guest) {
-
-        guestMessage.innerHTML = `Dear ${guest},`;
-
-    } else {
-
-        guestMessage.innerHTML = "Dear Guest,";
-
-    }
+    document.getElementById("guestMessage").innerHTML =
+    `Dear ${guest},`;
 
 }
-
 
 
 // ===============================
@@ -68,7 +46,7 @@ if (guestMessage) {
 
 const weddingDate = new Date("September 15, 2026 19:00:00").getTime();
 
-const timer = setInterval(() => {
+setInterval(() => {
 
     const now = new Date().getTime();
 
@@ -76,89 +54,100 @@ const timer = setInterval(() => {
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-    );
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) /
-        (1000 * 60)
-    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-    const seconds = Math.floor(
-        (distance % (1000 * 60)) /
-        1000
-    );
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     document.getElementById("days").textContent = days;
-
     document.getElementById("hours").textContent = hours;
-
     document.getElementById("minutes").textContent = minutes;
-
     document.getElementById("seconds").textContent = seconds;
 
-    if (distance < 0) {
-
-        clearInterval(timer);
-
-    }
-
-}, 1000);
+},1000);
 // ===============================
 // RSVP
 // ===============================
 
 const submitBtn = document.getElementById("submitRSVP");
 
-if (submitBtn) {
+submitBtn.addEventListener("click", function (e) {
 
-    submitBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-        e.preventDefault();
+    const fullName = document.getElementById("fullName").value.trim();
 
-        const fullName = document.getElementById("fullName").value.trim();
-        const attend = document.querySelector('input[name="attend"]:checked');
-        const guests = document.getElementById("guests").value;
-        const wish = document.getElementById("wish").value;
+    const attend = document.querySelector('input[name="attend"]:checked');
 
-        if (fullName === "") {
-            alert("Please enter your name.");
-            return;
-        }
+    const guests = document.getElementById("guests").value;
 
-        if (!attend) {
-            alert("Please choose if you will attend.");
-            return;
-        }
+    const wish = document.getElementById("wish").value.trim();
 
-        fetch("https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec", {
-            method: "POST",
-            body: JSON.stringify({
-                fullName: fullName,
-                attendance: attend.value,
-                guests: guests,
-                wish: wish
-            })
+    if (!fullName) {
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+    if (!attend) {
+
+        alert("Please choose Yes or No.");
+
+        return;
+
+    }
+
+    submitBtn.disabled = true;
+
+    submitBtn.textContent = "Sending...";
+
+    fetch("https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec", {
+
+        method: "POST",
+
+        body: JSON.stringify({
+
+            fullName: fullName,
+
+            attendance: attend.value,
+
+            guests: guests,
+
+            wish: wish
+
         })
-        .then(() => {
 
-            const thankyou = document.getElementById("thankyou");
+    })
 
-            thankyou.classList.add("show");
+    .then(() => {
 
-            thankyou.scrollIntoView({
-                behavior: "smooth"
-            });
+        rsvp.classList.add("hidden");
 
-        })
-        .catch(() => {
+        thankyou.classList.remove("hidden");
 
-            alert("Something went wrong. Please try again.");
+        thankyou.scrollIntoView({
+
+            behavior: "smooth"
 
         });
 
+    })
+
+    .catch(() => {
+
+        alert("Something went wrong.");
+
+    })
+
+    .finally(() => {
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent = "Submit";
+
     });
 
-}
+});
