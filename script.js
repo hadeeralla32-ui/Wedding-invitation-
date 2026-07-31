@@ -122,19 +122,23 @@ submitBtn.addEventListener("click", function (e) {
 
     })
 
-    .then(() => {
+.then((response) => {
 
-        rsvp.classList.add("hidden");
+    console.log(response);
 
-        thankyou.classList.remove("hidden");
+    rsvp.classList.add("hidden");
 
-        thankyou.scrollIntoView({
+    thankyou.classList.remove("hidden");
 
-            behavior: "smooth"
+    thankyou.style.display = "flex";
 
-        });
+    thankyou.scrollIntoView({
 
-    })
+        behavior: "smooth"
+
+    });
+
+})
 
     .catch(() => {
 
