@@ -116,6 +116,8 @@ if (submitBtn) {
 
         const fullName = document.getElementById("fullName").value.trim();
         const attend = document.querySelector('input[name="attend"]:checked');
+        const guests = document.getElementById("guests").value;
+        const wish = document.getElementById("wish").value;
 
         if (fullName === "") {
             alert("Please enter your name.");
@@ -127,13 +129,31 @@ if (submitBtn) {
             return;
         }
 
-        const thankyou = document.getElementById("thankyou");
+        fetch("https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec", {
+            method: "POST",
+            body: JSON.stringify({
+                fullName: fullName,
+                attendance: attend.value,
+                guests: guests,
+                wish: wish
+            })
+        })
+        .then(() => {
 
-thankyou.classList.add("show");
+            const thankyou = document.getElementById("thankyou");
 
-thankyou.scrollIntoView({
-    behavior: "smooth"
-});
+            thankyou.classList.add("show");
+
+            thankyou.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        })
+        .catch(() => {
+
+            alert("Something went wrong. Please try again.");
+
+        });
 
     });
 
