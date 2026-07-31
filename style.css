@@ -395,57 +395,48 @@ h3{
 
 }
 /* =========================
-   FLOATING HEARTS
+   FLOATING PETALS
 ========================= */
 
-#hearts{
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    overflow:hidden;
-
-    z-index:9999;
-
+#thankyou{
+    position: relative;
+    overflow: hidden;
 }
 
-.heart-float{
-
-    position:absolute;
-
-    bottom:-40px;
-
-    font-size:28px;
-
-    animation:floatUp 4s linear forwards;
-
+.petals-container{
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
 }
 
-@keyframes floatUp{
+.petal{
+    position: absolute;
+    top: -60px;
+    opacity: .9;
+    animation: petalFall linear forwards;
+    will-change: transform;
+}
+
+@keyframes petalFall{
 
     0%{
-
-        transform:translateY(0) scale(.8);
-
-        opacity:0;
-
+        transform: translateY(-60px) translateX(0px) rotate(0deg);
+        opacity: 0;
     }
 
-    15%{
+    10%{
+        opacity: 1;
+    }
 
-        opacity:1;
-
+    50%{
+        transform: translateY(50vh) translateX(30px) rotate(180deg);
     }
 
     100%{
-
-        transform:translateY(-110vh) rotate(360deg);
-
-        opacity:0;
-
+        transform: translateY(120vh) translateX(-30px) rotate(360deg);
+        opacity: 0;
     }
 
 }
