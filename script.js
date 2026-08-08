@@ -1,27 +1,3 @@
-// ===============================
-// OPEN INVITATION
-// ===============================
-
-const cover = document.getElementById("cover");
-const welcome = document.getElementById("welcome");
-const details = document.getElementById("details");
-const rsvp = document.getElementById("rsvp");
-const thankyou = document.getElementById("thankyou");
-
-document.getElementById("openInvitation").addEventListener("click", () => {
-
-    cover.style.display = "none";
-
-    welcome.classList.remove("hidden");
-    details.classList.remove("hidden");
-    rsvp.classList.remove("hidden");
-
-    window.scrollTo({
-        top: welcome.offsetTop,
-        behavior: "smooth"
-    });
-
-});
 
 
 // ===============================
