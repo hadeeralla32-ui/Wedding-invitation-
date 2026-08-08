@@ -192,53 +192,42 @@ function createPetal() {
 const weddingMusic = document.getElementById("weddingMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-window.addEventListener("load", () => {
+let musicStarted = false;
+
+function startMusic() {
+    if (musicStarted) return;
 
     weddingMusic.play()
         .then(() => {
+            musicStarted = true;
             musicBtn.innerHTML = "🔊";
         })
-        .catch(() => {});
-
-});
-
-function startMusic() {
-
-    if (weddingMusic.paused) {
-
-        weddingMusic.play()
-            .then(() => {
-                musicBtn.innerHTML = "🔊";
-            })
-            .catch(() => {});
-
-    }
-
-    document.removeEventListener("touchstart", startMusic);
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("scroll", startMusic);
+        .catch(() => {
+            musicStarted = false;
+        });
 }
 
-document.addEventListener("touchstart", startMusic, { once: true });
-document.addEventListener("click", startMusic, { once: true });
-document.addEventListener("scroll", startMusic, { once: true });
+document.addEventListener("touchstart", function (event) {
+    if (event.target === musicBtn) return;
+    startMusic();
+}, { once: true });
 
-musicBtn.addEventListener("click", (event) => {
+document.addEventListener("pointerdown", function (event) {
+    if (event.target === musicBtn) return;
+    startMusic();
+}, { once: true });
 
+musicBtn.addEventListener("click", function (event) {
     event.stopPropagation();
 
     if (weddingMusic.paused) {
-
         weddingMusic.play()
             .then(() => {
+                musicStarted = true;
                 musicBtn.innerHTML = "🔊";
             });
-
     } else {
-
         weddingMusic.pause();
         musicBtn.innerHTML = "🔇";
-
     }
-
 });
