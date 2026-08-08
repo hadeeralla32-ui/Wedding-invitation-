@@ -17,14 +17,26 @@
 
 </head>
 
-<body>
+<body onclick="startWeddingMusic(event)">
 
 <audio id="weddingMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <button id="musicBtn" type="button">🔇</button>
+<script>
+function startWeddingMusic(event) {
 
+    if (event.target.id === "musicBtn") return;
+
+    const music = document.getElementById("weddingMusic");
+    const button = document.getElementById("musicBtn");
+
+    music.play().then(() => {
+        button.textContent = "🔊";
+    }).catch(() => {});
+}
+</script>
 <!-- COVER -->
 
 <section id="cover" class="screen cover">
