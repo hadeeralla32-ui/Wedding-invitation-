@@ -19,11 +19,14 @@
 
 <body>
 
-<audio id="weddingMusic" loop>
+<audio id="weddingMusic" loop controls>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicBtn" type="button">🔇</button>
+<button id="musicBtn" type="button"
+onclick="document.getElementById('weddingMusic').play()">
+🔊 Play Music
+</button>
 
 <!-- COVER -->
 
