@@ -191,25 +191,57 @@ function createPetal() {
 }
 const weddingMusic = document.getElementById("weddingMusic");
 const musicBtn = document.getElementById("musicBtn");
-const openBtn = document.getElementById("openInvitation");
 
-if (openBtn) {
-    openBtn.addEventListener("click", () => {
+// محاولة تشغيل الموسيقى تلقائيًا عند فتح الدعوة
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        weddingMusic.play().then(() => {
+            musicBtn.innerHTML = "🔊";
+        }).catch(() => {
+            // المتصفح منع التشغيل التلقائي
+        });
+
+    }, 500);
+
+});
+
+// أول لمسة أو سكرول تشغل الموسيقى لو كانت متوقفة
+function startMusic() {
+
+    if (weddingMusic.paused) {
+
+        weddingMusic.play().then(() => {
+            musicBtn.innerHTML = "🔊";
+        }).catch(() => {});
+
+    }
+
+    window.removeEventListener("touchstart", startMusic);
+    window.removeEventListener("scroll", startMusic);
+
+}
+
+window.addEventListener("touchstart", startMusic, { once: true });
+window.addEventListener("scroll", startMusic, { once: true });
+
+
+// زر تشغيل / كتم الموسيقى
+musicBtn.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    if (weddingMusic.paused) {
+
         weddingMusic.play();
         musicBtn.innerHTML = "🔊";
-    });
-}
 
-if (musicBtn) {
-    musicBtn.addEventListener("click", () => {
+    } else {
 
-        if (weddingMusic.paused) {
-            weddingMusic.play();
-            musicBtn.innerHTML = "🔊";
-        } else {
-            weddingMusic.pause();
-            musicBtn.innerHTML = "🔇";
-        }
+        weddingMusic.pause();
+        musicBtn.innerHTML = "🔇";
 
-    });
-}
+    }
+
+});
