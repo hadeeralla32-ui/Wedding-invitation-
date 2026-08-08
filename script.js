@@ -192,50 +192,47 @@ function createPetal() {
 const weddingMusic = document.getElementById("weddingMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-// محاولة تشغيل الموسيقى تلقائيًا عند فتح الدعوة
 window.addEventListener("load", () => {
 
-    setTimeout(() => {
-
-        weddingMusic.play().then(() => {
+    weddingMusic.play()
+        .then(() => {
             musicBtn.innerHTML = "🔊";
-        }).catch(() => {
-            // المتصفح منع التشغيل التلقائي
-        });
-
-    }, 500);
+        })
+        .catch(() => {});
 
 });
 
-// أول لمسة أو سكرول تشغل الموسيقى لو كانت متوقفة
 function startMusic() {
 
     if (weddingMusic.paused) {
 
-        weddingMusic.play().then(() => {
-            musicBtn.innerHTML = "🔊";
-        }).catch(() => {});
+        weddingMusic.play()
+            .then(() => {
+                musicBtn.innerHTML = "🔊";
+            })
+            .catch(() => {});
 
     }
 
-    window.removeEventListener("touchstart", startMusic);
-    window.removeEventListener("scroll", startMusic);
-
+    document.removeEventListener("touchstart", startMusic);
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("scroll", startMusic);
 }
 
-window.addEventListener("touchstart", startMusic, { once: true });
-window.addEventListener("scroll", startMusic, { once: true });
+document.addEventListener("touchstart", startMusic, { once: true });
+document.addEventListener("click", startMusic, { once: true });
+document.addEventListener("scroll", startMusic, { once: true });
 
-
-// زر تشغيل / كتم الموسيقى
 musicBtn.addEventListener("click", (event) => {
 
     event.stopPropagation();
 
     if (weddingMusic.paused) {
 
-        weddingMusic.play();
-        musicBtn.innerHTML = "🔊";
+        weddingMusic.play()
+            .then(() => {
+                musicBtn.innerHTML = "🔊";
+            });
 
     } else {
 
