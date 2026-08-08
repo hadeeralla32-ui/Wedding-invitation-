@@ -166,42 +166,25 @@ function createPetal() {
 const weddingMusic = document.getElementById("weddingMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-let musicStarted = false;
-
-function startMusic() {
-    if (musicStarted) return;
-
+function playMusic() {
     weddingMusic.play()
         .then(() => {
-            musicStarted = true;
-            musicBtn.innerHTML = "🔊";
+            musicBtn.textContent = "🔊";
         })
-        .catch(() => {
-            musicStarted = false;
-        });
+        .catch(() => {});
 }
 
-document.addEventListener("touchstart", function (event) {
-    if (event.target === musicBtn) return;
-    startMusic();
-}, { once: true });
-
-document.addEventListener("pointerdown", function (event) {
-    if (event.target === musicBtn) return;
-    startMusic();
-}, { once: true });
-
-musicBtn.addEventListener("click", function (event) {
+function toggleMusic(event) {
     event.stopPropagation();
 
     if (weddingMusic.paused) {
-        weddingMusic.play()
-            .then(() => {
-                musicStarted = true;
-                musicBtn.innerHTML = "🔊";
-            });
+        playMusic();
     } else {
         weddingMusic.pause();
-        musicBtn.innerHTML = "🔇";
+        musicBtn.textContent = "🔇";
     }
-});
+}
+
+musicBtn.addEventListener("click", toggleMusic);
+
+document.addEventListener("touchstart", playMusic, { once: true });
