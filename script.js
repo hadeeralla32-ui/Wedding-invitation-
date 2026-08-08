@@ -166,25 +166,41 @@ function createPetal() {
 const weddingMusic = document.getElementById("weddingMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-function playMusic() {
+let musicStarted = false;
+
+function startMusic() {
+    if (musicStarted) return;
+
     weddingMusic.play()
         .then(() => {
+            musicStarted = true;
             musicBtn.textContent = "🔊";
         })
         .catch(() => {});
 }
 
-function toggleMusic(event) {
+// Any first touch anywhere on the page
+document.addEventListener("touchstart", startMusic, {
+    once: true,
+    passive: true
+});
+
+// Also support taps on devices that use pointer events
+document.addEventListener("pointerdown", startMusic, {
+    once: true
+});
+
+// Mute / unmute button
+musicBtn.addEventListener("click", function (event) {
     event.stopPropagation();
 
     if (weddingMusic.paused) {
-        playMusic();
+        weddingMusic.play().then(() => {
+            musicStarted = true;
+            musicBtn.textContent = "🔊";
+        });
     } else {
         weddingMusic.pause();
         musicBtn.textContent = "🔇";
     }
-}
-
-musicBtn.addEventListener("click", toggleMusic);
-
-document.addEventListener("touchstart", playMusic, { once: true });
+});
