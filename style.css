@@ -186,7 +186,7 @@ p{
 
 .calendar-week{
     display:grid;
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns:repeat(7,minmax(0,1fr));
     width:100%;
     gap:0;
     margin-bottom:8px;
@@ -197,6 +197,7 @@ p{
     justify-content:center;
     align-items:center;
     width:100%;
+    min-width:0;
     font-size:16px;
     letter-spacing:1px;
     color:var(--text);
@@ -208,7 +209,7 @@ p{
 
 .calendar-days{
     display:grid;
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns:repeat(7,minmax(0,1fr));
     width:100%;
     gap:0;
     align-items:center;
@@ -217,6 +218,7 @@ p{
 .calendar-day{
     height:65px;
     width:100%;
+    min-width:0;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -233,7 +235,8 @@ p{
     position:relative;
     color:var(--rose);
     font-weight:600;
-    z-index:2;
+    z-index:1;
+    overflow:visible;
 }
 
 /* =========================
@@ -242,15 +245,103 @@ p{
 
 .day-number{
     position:relative;
-    z-index:5;
+    z-index:10;
     display:flex;
     align-items:center;
     justify-content:center;
-    width:100%;
-    height:100%;
+    width:auto;
+    height:auto;
     color:var(--rose);
 }
 
+/* ===============================
+   WEDDING HEART
+================================ */
+
+.calendar-day.wedding-day .heart-outline{
+    position:absolute;
+
+    width:52px;
+    height:48px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-54%);
+
+    z-index:2;
+    pointer-events:none;
+}
+
+/* Left curve */
+
+.calendar-day.wedding-day .heart-outline::before{
+    content:"";
+
+    position:absolute;
+
+    width:25px;
+    height:36px;
+
+    left:6px;
+    top:2px;
+
+    border:1.5px solid var(--rose);
+    border-right:none;
+
+    border-radius:25px 0 0 25px;
+
+    transform:rotate(-45deg);
+    transform-origin:100% 100%;
+}
+
+/* Right curve */
+
+.calendar-day.wedding-day .heart-outline::after{
+    content:"";
+
+    position:absolute;
+
+    width:25px;
+    height:36px;
+
+    right:6px;
+    top:2px;
+
+    border:1.5px solid var(--rose);
+    border-left:none;
+
+    border-radius:0 25px 25px 0;
+
+    transform:rotate(45deg);
+    transform-origin:0 100%;
+}
+
+/* ===============================
+   WEDDING STEM
+================================ */
+
+.calendar-day.wedding-day .wedding-stem{
+    position:absolute;
+
+    width:1px;
+    height:22px;
+
+    background:var(--rose);
+
+    left:50%;
+    top:calc(50% + 22px);
+
+    transform:translateX(-50%);
+
+    z-index:1;
+}
+
+/* Remove old white circle */
+
+.calendar-day.wedding-day .wedding-stem::after{
+    display:none !important;
+}
 
 /* =========================
    WEDDING TIME
@@ -498,6 +589,7 @@ h3{
     .calendar-week span{
         font-size:13px;
         letter-spacing:0;
+        white-space:nowrap;
     }
 
     .calendar-day{
@@ -505,243 +597,7 @@ h3{
         font-size:22px;
     }
 
-    .heart-outline{
-        width:53px;
-        height:48px;
-    }
-
-    .calendar-day.wedding-day .day-number::after{
-        width:35px;
-        height:35px;
-        top:7px;
-    }
-
-    .wedding-stem{
-        height:24px;
-        top:calc(50% + 23px);
-    }
-
-    .wedding-time{
-        margin-top:65px;
-    }
-
-    .wedding-time p{
-        font-size:14px;
-        letter-spacing:3px;
-    }
-
-    .wedding-time h3{
-        font-size:34px;
-    }
-
-}
-/* ===============================
-   CALENDAR FINAL FIX
-================================ */
-
-.calendar-week,
-.calendar-days {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 0;
-}
-
-.calendar-week span,
-.calendar-day {
-    min-width: 0;
-    width: 100%;
-}
-
-.calendar-day {
-    height: 65px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-}
-
-/* Keep the wedding heart inside its own calendar cell */
-.calendar-day.wedding-day {
-    position: relative;
-    z-index: 1;
-    overflow: visible;
-}
-
-/* Wedding number stays exactly centered */
-.calendar-day.wedding-day .day-number {
-    position: relative;
-    z-index: 5;
-    width: auto;
-    height: auto;
-}
-
-/* Thin heart outline */
-.calendar-day.wedding-day .heart-outline {
-    position: absolute;
-    width: 54px;
-    height: 50px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -52%);
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* Stem stays under the heart */
-.calendar-day.wedding-day .wedding-stem {
-    position: absolute;
-    width: 1px;
-    height: 25px;
-    left: 50%;
-    top: calc(50% + 22px);
-    transform: translateX(-50%);
-    z-index: 1;
-}
-
-/* Mobile */
-@media(max-width:600px){
-
-    .calendar-week,
-    .calendar-days {
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        width: 100%;
-    }
-
-    .calendar-week span {
-        font-size: 13px;
-        letter-spacing: 0;
-        white-space: nowrap;
-    }
-
-    .calendar-day {
-        height: 60px;
-        font-size: 22px;
-    }
-
-    .calendar-day.wedding-day .heart-outline {
-        width: 42px;
-        height: 38px;
-    }
-
-    .calendar-day.wedding-day .wedding-stem {
-        height: 25px;
-        top: calc(50% + 21px);
-    }
-}
--stem::after{
-    content:"";
-
-    position:absolute;
-
-    width:4px;
-    height:4px;
-
-    border:1px solid var(--rose);
-    border-radius:50%;
-
-    background:var(--bg);
-
-    left:50%;
-    bottom:-4px;
-
-    transform:translateX(-50%);
-}
-
-/* Mobile size */
-@media(max-width:600px){
-
-    .calendar-day.wedding-day .heart-outline{
-        width:44px;
-        height:40px;
-    }
-
-    .calendar-day.wedding-day .wedding-stem{
-        height:23px;
-        top:calc(50% + 19px);
-    }
-
-}
-/* ===============================
-   WEDDING HEART — FINAL
-================================ */
-
-.calendar-day.wedding-day{
-    position:relative;
-    overflow:visible;
-}
-
-/* The number 15 */
-.calendar-day.wedding-day .day-number{
-    position:relative;
-    z-index:10;
-    width:auto;
-    height:auto;
-    color:var(--rose);
-}
-
-/* Heart outline */
-.calendar-day.wedding-day .heart-outline{
-    position:absolute;
-    width:52px;
-    height:48px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-54%);
-    z-index:2;
-    pointer-events:none;
-}
-
-/* Left curve */
-.calendar-day.wedding-day .heart-outline::before{
-    content:"";
-    position:absolute;
-    width:25px;
-    height:36px;
-    left:6px;
-    top:2px;
-    border:1.5px solid var(--rose);
-    border-right:none;
-    border-radius:25px 0 0 25px;
-    transform:rotate(-45deg);
-    transform-origin:100% 100%;
-}
-
-/* Right curve */
-.calendar-day.wedding-day .heart-outline::after{
-    content:"";
-    position:absolute;
-    width:25px;
-    height:36px;
-    right:6px;
-    top:2px;
-    border:1.5px solid var(--rose);
-    border-left:none;
-    border-radius:0 25px 25px 0;
-    transform:rotate(45deg);
-    transform-origin:0 100%;
-}
-
-/* Stem */
-.calendar-day.wedding-day .wedding-stem{
-    position:absolute;
-    width:1px;
-    height:22px;
-    background:var(--rose);
-    left:50%;
-    top:calc(50% + 22px);
-    transform:translateX(-50%);
-    z-index:1;
-}
-
-/* No white circle */
-.calendar-day.wedding-day .wedding-stem::after{
-    display:none !important;
-}
-
-/* Mobile */
-@media(max-width:600px){
+    /* Wedding heart on mobile */
 
     .calendar-day.wedding-day .heart-outline{
         width:50px;
@@ -761,5 +617,18 @@ h3{
     .calendar-day.wedding-day .wedding-stem{
         height:21px;
         top:calc(50% + 21px);
+    }
+
+    .wedding-time{
+        margin-top:65px;
+    }
+
+    .wedding-time p{
+        font-size:14px;
+        letter-spacing:3px;
+    }
+
+    .wedding-time h3{
+        font-size:34px;
     }
 }
