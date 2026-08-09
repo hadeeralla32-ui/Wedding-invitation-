@@ -796,3 +796,4 @@ function createPetal() {
     }, 9000);
 
     }
+console.log("Wedding script is working");
