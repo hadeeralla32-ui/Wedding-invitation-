@@ -835,3 +835,108 @@ h3{
     }
 
 }
+/* ===============================
+   FINAL WEDDING HEART
+================================ */
+
+.calendar-day.wedding-day{
+    position:relative;
+    overflow:visible;
+}
+
+/* Keep the number centered */
+.calendar-day.wedding-day .day-number{
+    position:relative;
+    z-index:10;
+    width:auto;
+    height:auto;
+    color:var(--rose);
+}
+
+/* Larger thin heart */
+.calendar-day.wedding-day .heart-outline{
+    position:absolute;
+    width:66px;
+    height:60px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-53%);
+    z-index:2;
+    pointer-events:none;
+}
+
+/* Left curve */
+.calendar-day.wedding-day .heart-outline::before{
+    content:"";
+    position:absolute;
+    width:33px;
+    height:48px;
+    left:7px;
+    top:2px;
+    border:1.5px solid var(--rose);
+    border-right:none;
+    border-radius:32px 0 0 32px;
+    transform:rotate(-45deg);
+    transform-origin:100% 100%;
+}
+
+/* Right curve */
+.calendar-day.wedding-day .heart-outline::after{
+    content:"";
+    position:absolute;
+    width:33px;
+    height:48px;
+    right:7px;
+    top:2px;
+    border:1.5px solid var(--rose);
+    border-left:none;
+    border-radius:0 32px 32px 0;
+    transform:rotate(45deg);
+    transform-origin:0 100%;
+}
+
+/* Remove the old extra heart shape */
+.calendar-day.wedding-day .day-number::after{
+    display:none !important;
+}
+
+/* Thin stem */
+.calendar-day.wedding-day .wedding-stem{
+    position:absolute;
+    width:1px;
+    height:28px;
+    background:var(--rose);
+    left:50%;
+    top:calc(50% + 27px);
+    transform:translateX(-50%);
+    z-index:1;
+}
+
+/* Remove the white circle at the bottom */
+.calendar-day.wedding-day .wedding-stem::after{
+    display:none !important;
+}
+
+/* Mobile */
+@media(max-width:600px){
+
+    .calendar-day.wedding-day .heart-outline{
+        width:62px;
+        height:57px;
+    }
+
+    .calendar-day.wedding-day .heart-outline::before{
+        width:31px;
+        height:46px;
+    }
+
+    .calendar-day.wedding-day .heart-outline::after{
+        width:31px;
+        height:46px;
+    }
+
+    .calendar-day.wedding-day .wedding-stem{
+        height:26px;
+        top:calc(50% + 25px);
+    }
+}
