@@ -37,7 +37,13 @@ body{
     padding:30px;
     position:relative;
 }
+/* =========================
+   COVER HEIGHT
+========================= */
 
+.cover{
+    min-height:80vh;
+}
 .hidden{
     display:none;
 }
