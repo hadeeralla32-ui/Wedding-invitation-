@@ -57,18 +57,18 @@ function startAutoScroll() {
 
     autoScrolling = true;
 
-    const startPosition = window.scrollY;
+    const sections = [
+        welcome,
+        details,
+        rsvp
+    ];
 
-    const targetPosition = rsvp.offsetTop;
+    let currentSection = 0;
 
-    const distance = targetPosition - startPosition;
-
-    const duration = 18000;
-
-    const startTime = performance.now();
+    const sectionDuration = 7000; // 7 seconds per section
 
 
-    function animate(currentTime) {
+    function scrollToNextSection() {
 
         if (autoScrollStopped) {
 
@@ -78,42 +78,92 @@ function startAutoScroll() {
         }
 
 
-        const elapsed = currentTime - startTime;
-
-        const progress =
-            Math.min(elapsed / duration, 1);
-
-
-        // Smooth easing
-        const eased =
-            progress < 0.5
-                ? 2 * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-
-        window.scrollTo(
-            0,
-            startPosition + distance * eased
-        );
-
-
-        if (progress < 1) {
-
-            requestAnimationFrame(animate);
-
-        } else {
-
-            // Stop exactly at RSVP
-            window.scrollTo(0, targetPosition);
+        if (currentSection >= sections.length) {
 
             autoScrolling = false;
+            return;
 
         }
+
+
+        const startPosition = window.scrollY;
+
+        const targetPosition =
+            sections[currentSection].offsetTop;
+
+        const distance =
+            targetPosition - startPosition;
+
+        const startTime =
+            performance.now();
+
+
+        function animate(currentTime) {
+
+            if (autoScrollStopped) {
+
+                autoScrolling = false;
+                return;
+
+            }
+
+
+            const elapsed =
+                currentTime - startTime;
+
+
+            const progress =
+                Math.min(
+                    elapsed / sectionDuration,
+                    1
+                );
+
+
+            const eased =
+                progress < 0.5
+                    ? 2 * progress * progress
+                    : 1 -
+                      Math.pow(
+                          -2 * progress + 2,
+                          2
+                      ) / 2;
+
+
+            window.scrollTo(
+                0,
+                startPosition +
+                distance * eased
+            );
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(animate);
+
+            } else {
+
+                currentSection++;
+
+                // Pause briefly before moving
+                // to the next section
+
+                setTimeout(() => {
+
+                    scrollToNextSection();
+
+                }, 1500);
+
+            }
+
+        }
+
+
+        requestAnimationFrame(animate);
 
     }
 
 
-    requestAnimationFrame(animate);
+    scrollToNextSection();
 
 }
 
