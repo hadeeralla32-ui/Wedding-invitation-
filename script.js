@@ -57,18 +57,18 @@ function startAutoScroll() {
 
     autoScrolling = true;
 
-    const sections = [
-        welcome,
-        details,
-        rsvp
-    ];
+    const startPosition = window.scrollY;
+    const targetPosition = rsvp.offsetTop;
 
-    let currentSection = 0;
+    const distance = targetPosition - startPosition;
 
-    const sectionDuration = 7000; // 7 seconds per section
+    // Total time for the whole invitation
+    const duration = 28000;
+
+    const startTime = performance.now();
 
 
-    function scrollToNextSection() {
+    function animate(currentTime) {
 
         if (autoScrollStopped) {
 
@@ -78,92 +78,44 @@ function startAutoScroll() {
         }
 
 
-        if (currentSection >= sections.length) {
-
-            autoScrolling = false;
-            return;
-
-        }
+        const elapsed =
+            currentTime - startTime;
 
 
-        const startPosition = window.scrollY;
-
-        const targetPosition =
-            sections[currentSection].offsetTop;
-
-        const distance =
-            targetPosition - startPosition;
-
-        const startTime =
-            performance.now();
-
-
-        function animate(currentTime) {
-
-            if (autoScrollStopped) {
-
-                autoScrolling = false;
-                return;
-
-            }
-
-
-            const elapsed =
-                currentTime - startTime;
-
-
-            const progress =
-                Math.min(
-                    elapsed / sectionDuration,
-                    1
-                );
-
-
-            const eased =
-                progress < 0.5
-                    ? 2 * progress * progress
-                    : 1 -
-                      Math.pow(
-                          -2 * progress + 2,
-                          2
-                      ) / 2;
-
-
-            window.scrollTo(
-                0,
-                startPosition +
-                distance * eased
+        const progress =
+            Math.min(
+                elapsed / duration,
+                1
             );
 
 
-            if (progress < 1) {
+        // Constant smooth speed
+        window.scrollTo(
+            0,
+            startPosition +
+            distance * progress
+        );
 
-                requestAnimationFrame(animate);
 
-            } else {
+        if (progress < 1) {
 
-                currentSection++;
+            requestAnimationFrame(animate);
 
-                // Pause briefly before moving
-                // to the next section
+        } else {
 
-                setTimeout(() => {
+            window.scrollTo(
+                0,
+                targetPosition
+            );
 
-                    scrollToNextSection();
-
-                }, 1500);
-
-            }
+            autoScrolling = false;
 
         }
-
-
-        requestAnimationFrame(animate);
 
     }
 
 
-    scrollToNextSection();
+    requestAnimationFrame(animate);
 
 }
 
