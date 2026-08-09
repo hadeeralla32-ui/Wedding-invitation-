@@ -434,3 +434,27 @@ h3{
     }
 
 }
+/* ===============================
+   WEDDING TIME
+   =============================== */
+
+.wedding-time {
+    margin: 15px 0 28px;
+    text-align: center;
+}
+
+.wedding-time p {
+    margin: 0 0 6px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
+
+.wedding-time h3 {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
