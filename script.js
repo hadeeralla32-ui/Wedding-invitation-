@@ -305,7 +305,7 @@ function startAutoScroll() {
 
     // Around 23 seconds
     // for the whole invitation.
-    const duration = 23000;
+    const duration = 32000;
 
 
     const startTime =
