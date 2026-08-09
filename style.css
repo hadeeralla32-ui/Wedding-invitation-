@@ -252,11 +252,6 @@ p{
     font-weight:600;
 }
 
-.calendar-day.wedding-day .day-number{
-    color:var(--rose);
-    font-weight:600;
-}
-
 /* =========================
    WEDDING TIME
 ========================= */
