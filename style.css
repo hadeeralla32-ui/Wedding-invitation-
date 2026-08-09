@@ -708,8 +708,9 @@ h3{
     }
 
     .calendar-day{
-        height:60px;
-        font-size:22px;
+    height:60px;
+    font-size:22px;
+    text-align:center;
     }
 
     .calendar-day.wedding-day::before{
