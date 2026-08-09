@@ -492,3 +492,134 @@ h3{
 #openInvitation:hover{
     transform:translateY(-3px);
 }
+/* =========================
+   WEDDING DATE CALENDAR
+========================= */
+
+.date-calendar{
+    margin-top:35px;
+    width:100%;
+    max-width:520px;
+    text-align:center;
+}
+
+.calendar-month{
+    font-size:16px;
+    letter-spacing:5px;
+    color:var(--rose);
+    margin-bottom:20px;
+    font-weight:500;
+}
+
+.calendar-days{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+}
+
+.calendar-days > span{
+    width:38px;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    color:var(--text);
+    position:relative;
+}
+
+.calendar-days .wedding-day{
+    width:55px;
+    height:65px;
+    color:var(--rose);
+    position:relative;
+}
+
+.calendar-days .wedding-day strong{
+    position:relative;
+    z-index:2;
+    font-size:25px;
+    font-weight:500;
+}
+
+.heart-line{
+    position:absolute;
+    width:40px;
+    height:40px;
+    border:1.5px solid var(--rose);
+    transform:rotate(-45deg);
+    border-radius:5px 50% 50% 50%;
+    top:11px;
+    left:7px;
+}
+
+.wedding-time{
+    margin-top:30px;
+    text-align:center;
+}
+
+.wedding-time p{
+    margin:0 0 5px;
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:.75;
+}
+
+.wedding-time h3{
+    margin:0;
+    font-family:"Cormorant Garamond",serif;
+    font-size:34px;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+
+/* =========================
+   MOBILE CALENDAR
+========================= */
+
+@media(max-width:600px){
+
+    .date-calendar{
+        margin-top:30px;
+    }
+
+    .calendar-month{
+        font-size:15px;
+        letter-spacing:4px;
+        margin-bottom:17px;
+    }
+
+    .calendar-days{
+        gap:5px;
+    }
+
+    .calendar-days > span{
+        width:34px;
+        height:48px;
+        font-size:20px;
+    }
+
+    .calendar-days .wedding-day{
+        width:50px;
+        height:60px;
+    }
+
+    .calendar-days .wedding-day strong{
+        font-size:23px;
+    }
+
+    .heart-line{
+        width:37px;
+        height:37px;
+        top:10px;
+        left:6px;
+    }
+
+    .wedding-time{
+        margin-top:27px;
+    }
+
+}
