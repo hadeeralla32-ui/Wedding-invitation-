@@ -181,31 +181,33 @@ function startWeddingMusic() {
 }
 
 
-// Try autoplay when the page opens
+// Try to start automatically when the invitation opens
 window.addEventListener("load", () => {
     startWeddingMusic();
 });
 
 
-// Start music on the first touch
-document.addEventListener("touchstart", () => {
-    startWeddingMusic();
-}, { once: true, passive: true });
+// Start when the guest touches the screen
+document.addEventListener("touchstart", startWeddingMusic, {
+    once: true,
+    passive: true
+});
 
 
-// Start music on the first scroll
-document.addEventListener("scroll", () => {
-    startWeddingMusic();
-}, { once: true, passive: true });
+// Start when the guest starts scrolling
+document.addEventListener("scroll", startWeddingMusic, {
+    once: true,
+    passive: true
+});
 
 
-// Start music on the first pointer interaction
-document.addEventListener("pointerdown", () => {
-    startWeddingMusic();
-}, { once: true });
+// Start on any pointer interaction
+document.addEventListener("pointerdown", startWeddingMusic, {
+    once: true
+});
 
 
-// Music mute / unmute button
+// Mute / unmute button
 musicBtn.addEventListener("click", (event) => {
 
     event.stopPropagation();
