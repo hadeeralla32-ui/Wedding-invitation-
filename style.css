@@ -469,19 +469,26 @@ h3{
 ========================= */
 
 .save-date{
-    margin-top:28px;
-    margin-bottom:4px;
-    font-size:16px;
-    letter-spacing:5px;
-    font-weight:500;
+    margin-top:25px;
+    font-size:18px;
+    letter-spacing:4px;
     color:var(--rose);
 }
 
-@media(max-width:600px){
+/* =========================
+   OPEN INVITATION
+========================= */
 
-    .save-date{
-        font-size:14px;
-        letter-spacing:4px;
-    }
+#openInvitation{
+    margin-top:30px;
+    padding:16px 45px;
+    border-radius:50px;
+    background:var(--rose);
+    color:white;
+    font-size:22px;
+    transition:.3s;
+}
 
+#openInvitation:hover{
+    transform:translateY(-3px);
 }
