@@ -898,130 +898,560 @@ submitBtn.addEventListener(
         .then(() => {
 
             // Hide RSVP
-            rsvp.style.display =
-                "none";
+// ===============================
+// START
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ===============================
+    // ELEMENTS
+    // ===============================
+
+    const welcome = document.getElementById("welcome");
+    const details = document.getElementById("details");
+    const rsvp = document.getElementById("rsvp");
+    const thankyou = document.getElementById("thankyou");
+
+    const weddingMusic =
+        document.getElementById("weddingMusic");
+
+    const musicBtn =
+        document.getElementById("musicBtn");
 
 
-            // Show Thank You
-            thankyou.style.display =
-                "flex";
+    // ===============================
+    // SHOW INVITATION
+    // ===============================
+
+    welcome.classList.remove("hidden");
+    details.classList.remove("hidden");
+    rsvp.classList.remove("hidden");
 
 
-            // Create petals
-            for (
-                let i = 0;
-                i < 30;
-                i++
-            ) {
+    // ===============================
+    // GUEST NAME
+    // ===============================
 
-                setTimeout(
-                    createPetal,
-                    i * 250
-                );
+    const params =
+        new URLSearchParams(window.location.search);
 
-            }
+    const guest =
+        params.get("guest");
 
+    const guestMessage =
+        document.getElementById("guestMessage");
 
-            // Move to Thank You
-            thankyou.scrollIntoView({
-                behavior: "smooth"
-            });
+    if (guest && guestMessage) {
 
-
-        })
-
-
-        .catch(() => {
-
-            alert(
-                "Something went wrong."
-            );
-
-        })
-
-
-        .finally(() => {
-
-            submitBtn.disabled =
-                false;
-
-            submitBtn.textContent =
-                "Submit";
-
-        });
+        guestMessage.textContent =
+            `Dear ${guest},`;
 
     }
-);
 
 
-// ===============================
-// FLOATING PETALS
-// ===============================
+    // ===============================
+    // MUSIC
+    // ===============================
 
-const petals = [
-
-    "Single-rose-petal.png",
-
-    "single-white-petal.png"
-
-];
+    let musicStarted = false;
 
 
-function createPetal() {
+    function startWeddingMusic() {
 
-    const container =
-        document.querySelector(
-            ".petals-container"
-        );
+        if (!weddingMusic) return;
 
-
-    if (!container) return;
+        if (musicStarted) return;
 
 
-    const petal =
-        document.createElement("img");
+        weddingMusic.play()
+            .then(function () {
+
+                musicStarted = true;
+
+                if (musicBtn) {
+                    musicBtn.textContent = "🔊";
+                }
+
+            })
+            .catch(function () {
+
+                // Mobile browsers may block autoplay.
+                // Any interaction will try again.
+
+            });
+
+    }
 
 
-    petal.src =
-        petals[
-            Math.floor(
-                Math.random() *
-                petals.length
-            )
-        ];
+    // Try immediately
+    startWeddingMusic();
 
 
-    petal.className =
-        "petal";
-
-
-    petal.style.left =
-        Math.random() * 100 + "%";
-
-
-    petal.style.width =
-        (
-            20 +
-            Math.random() * 18
-        ) + "px";
-
-
-    petal.style.animationDuration =
-        (
-            6 +
-            Math.random() * 3
-        ) + "s";
-
-
-    container.appendChild(
-        petal
+    // Try after any interaction
+    document.addEventListener(
+        "touchstart",
+        startWeddingMusic,
+        { once: true, passive: true }
     );
 
 
-    setTimeout(() => {
+    document.addEventListener(
+        "pointerdown",
+        startWeddingMusic,
+        { once: true }
+    );
 
-        petal.remove();
 
-    }, 9000);
+    document.addEventListener(
+        "scroll",
+        startWeddingMusic,
+        { once: true, passive: true }
+    );
+
+
+    // ===============================
+    // MUSIC BUTTON
+    // ===============================
+
+    if (musicBtn) {
+
+        musicBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+
+                if (weddingMusic.paused) {
+
+                    weddingMusic.play()
+                        .then(function () {
+
+                            musicStarted = true;
+
+                            musicBtn.textContent =
+                                "🔊";
+
+                        });
+
+                } else {
+
+                    weddingMusic.pause();
+
+                    musicBtn.textContent =
+                        "🔇";
+
+                }
 
             }
+        );
+
+    }
+
+
+    // ===============================
+    // COUNTDOWN
+    // ===============================
+
+    const weddingDate =
+        new Date(
+            "2026-09-15T19:00:00+03:00"
+        ).getTime();
+
+
+    function updateCountdown() {
+
+        const now =
+            new Date().getTime();
+
+        const distance =
+            weddingDate - now;
+
+
+        if (distance <= 0) {
+
+            document.getElementById("days").textContent = "0";
+            document.getElementById("hours").textContent = "0";
+            document.getElementById("minutes").textContent = "0";
+            document.getElementById("seconds").textContent = "0";
+
+            return;
+
+        }
+
+
+        document.getElementById("days").textContent =
+            Math.floor(
+                distance /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        document.getElementById("hours").textContent =
+            Math.floor(
+                (
+                    distance %
+                    (1000 * 60 * 60 * 24)
+                ) /
+                (1000 * 60 * 60)
+            );
+
+
+        document.getElementById("minutes").textContent =
+            Math.floor(
+                (
+                    distance %
+                    (1000 * 60 * 60)
+                ) /
+                (1000 * 60)
+            );
+
+
+        document.getElementById("seconds").textContent =
+            Math.floor(
+                (
+                    distance %
+                    (1000 * 60)
+                ) /
+                1000
+            );
+
+    }
+
+
+    updateCountdown();
+
+    setInterval(
+        updateCountdown,
+        1000
+    );
+
+
+    // ===============================
+    // AUTO SCROLL
+    // ===============================
+
+    let autoScrolling = false;
+
+
+    function startAutoScroll() {
+
+        if (autoScrolling) return;
+
+        autoScrolling = true;
+
+
+        const startPosition =
+            window.scrollY;
+
+
+        const targetPosition =
+            rsvp.offsetTop;
+
+
+        const distance =
+            targetPosition -
+            startPosition;
+
+
+        // سرعة الحركة
+        const speed = 30;
+
+
+        const duration =
+            Math.max(
+                (distance / speed) * 1000,
+                10000
+            );
+
+
+        const startTime =
+            performance.now();
+
+
+        function animate(currentTime) {
+
+            const elapsed =
+                currentTime -
+                startTime;
+
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            const currentPosition =
+                startPosition +
+                distance * progress;
+
+
+            window.scrollTo(
+                0,
+                currentPosition
+            );
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(
+                    animate
+                );
+
+            } else {
+
+                window.scrollTo(
+                    0,
+                    targetPosition
+                );
+
+                autoScrolling = false;
+
+            }
+
+        }
+
+
+        requestAnimationFrame(
+            animate
+        );
+
+    }
+
+
+    // Start after opening
+    setTimeout(
+        startAutoScroll,
+        1800
+    );
+
+
+    // ===============================
+    // RSVP
+    // ===============================
+
+    const submitBtn =
+        document.getElementById(
+            "submitRSVP"
+        );
+
+
+    if (submitBtn) {
+
+        submitBtn.addEventListener(
+            "click",
+            function (e) {
+
+                e.preventDefault();
+
+
+                const fullName =
+                    document
+                        .getElementById("fullName")
+                        .value
+                        .trim();
+
+
+                const attend =
+                    document.querySelector(
+                        'input[name="attend"]:checked'
+                    );
+
+
+                const wish =
+                    document
+                        .getElementById("wish")
+                        .value
+                        .trim();
+
+
+                if (!fullName) {
+
+                    alert(
+                        "Please enter your name."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!attend) {
+
+                    alert(
+                        "Please choose Yes or No."
+                    );
+
+                    return;
+
+                }
+
+
+                submitBtn.disabled = true;
+
+                submitBtn.textContent =
+                    "Sending...";
+
+
+                fetch(
+                    "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
+                    {
+                        method: "POST",
+
+                        mode: "no-cors",
+
+                        body: JSON.stringify({
+
+                            fullName:
+                                fullName,
+
+                            attendance:
+                                attend.value,
+
+                            wish:
+                                wish
+
+                        })
+                    }
+                )
+
+
+                .then(function () {
+
+                    // Stop everything
+                    autoScrolling = false;
+
+
+                    // Hide RSVP
+                    rsvp.style.display =
+                        "none";
+
+
+                    // Show Thank You
+                    thankyou.style.display =
+                        "flex";
+
+
+                    // Petals
+                    for (
+                        let i = 0;
+                        i < 30;
+                        i++
+                    ) {
+
+                        setTimeout(
+                            createPetal,
+                            i * 250
+                        );
+
+                    }
+
+
+                    thankyou.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                })
+
+
+                .catch(function () {
+
+                    alert(
+                        "Something went wrong."
+                    );
+
+                })
+
+
+                .finally(function () {
+
+                    submitBtn.disabled =
+                        false;
+
+                    submitBtn.textContent =
+                        "Submit";
+
+                });
+
+            }
+        );
+
+    }
+
+
+    // ===============================
+    // PETALS
+    // ===============================
+
+    const petals = [
+        "Single-rose-petal.png",
+        "single-white-petal.png"
+    ];
+
+
+    function createPetal() {
+
+        const container =
+            document.querySelector(
+                ".petals-container"
+            );
+
+
+        if (!container) return;
+
+
+        const petal =
+            document.createElement("img");
+
+
+        petal.src =
+            petals[
+                Math.floor(
+                    Math.random() *
+                    petals.length
+                )
+            ];
+
+
+        petal.className =
+            "petal";
+
+
+        petal.style.left =
+            Math.random() * 100 + "%";
+
+
+        petal.style.width =
+            (
+                20 +
+                Math.random() * 18
+            ) + "px";
+
+
+        petal.style.animationDuration =
+            (
+                6 +
+                Math.random() * 3
+            ) + "s";
+
+
+        container.appendChild(
+            petal
+        );
+
+
+        setTimeout(
+            function () {
+
+                petal.remove();
+
+            },
+            9000
+        );
+
+    }
+
+});
