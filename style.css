@@ -590,63 +590,128 @@ h3{
 }
 
 
-/* HEART TOP */
+/* ===============================
+   WEDDING DAY HEART
+================================ */
 
-.calendar-day.wedding-day::after{
-    content:"";
-    position:absolute;
-
-    width:29px;
-    height:29px;
-
-    border-top:2px solid var(--rose);
-    border-right:2px solid var(--rose);
-
-    border-radius:0 50% 0 0;
-
-    transform:rotate(-45deg);
-
-    top:5px;
-    left:50%;
-
-    margin-left:-14px;
+.calendar-day.wedding-day{
+    position:relative;
+    color:var(--rose);
+    font-weight:500;
+    z-index:1;
 }
 
 
-/* HEART STEM */
+/* NUMBER */
+
+.wedding-number{
+    position:relative;
+    z-index:3;
+
+    font-size:25px;
+    line-height:1;
+
+    color:var(--rose);
+}
+
+
+/* HEART OUTLINE */
+
+.wedding-heart{
+    position:absolute;
+
+    width:72px;
+    height:72px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    overflow:visible;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+
+/* HEART LINE */
+
+.wedding-heart path{
+    fill:none;
+
+    stroke:var(--rose);
+
+    stroke-width:1.8;
+
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+
+/* STEM */
 
 .wedding-stem{
     position:absolute;
 
-    width:2px;
-    height:35px;
+    width:1.5px;
+    height:30px;
 
     background:var(--rose);
 
-    top:56px;
     left:50%;
 
+    top:47px;
+
     transform:translateX(-50%);
+
+    z-index:1;
 }
+
+
+/* LITTLE DOT */
 
 .wedding-stem::after{
     content:"";
 
     position:absolute;
 
-    width:5px;
-    height:5px;
+    width:4px;
+    height:4px;
 
     border-radius:50%;
 
     background:var(--rose);
 
-    bottom:-3px;
     left:50%;
+    bottom:-2px;
 
     transform:translateX(-50%);
 }
 
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media(max-width:600px){
+
+    .wedding-heart{
+        width:68px;
+        height:68px;
+    }
+
+    .wedding-number{
+        font-size:22px;
+    }
+
+    .wedding-stem{
+        height:28px;
+        top:45px;
+    }
+
+}
 
 /* CELEBRATION TIME */
 
