@@ -1376,14 +1376,417 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 });
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ===============================
+    // ELEMENTS
+    // ===============================
+
+    const welcome = document.getElementById("welcome");
+    const details = document.getElementById("details");
+    const rsvp = document.getElementById("rsvp");
+    const thankyou = document.getElementById("thankyou");
+
+    const weddingMusic = document.getElementById("weddingMusic");
+    const musicBtn = document.getElementById("musicBtn");
+
+
+    // ===============================
+    // SHOW INVITATION
+    // ===============================
+
+    welcome.classList.remove("hidden");
+    details.classList.remove("hidden");
+    rsvp.classList.remove("hidden");
+
+
+    // ===============================
+    // GUEST NAME
+    // ===============================
+
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get("guest");
+
+    const guestMessage = document.getElementById("guestMessage");
+
+    if (guest && guestMessage) {
+        guestMessage.textContent = `Dear ${guest},`;
+    }
+
+
+    // ===============================
+    // MUSIC
+    // ===============================
+
+    let musicStarted = false;
+
+    function startWeddingMusic() {
+
+        if (!weddingMusic || musicStarted) return;
+
+        weddingMusic.play()
+            .then(function () {
+
+                musicStarted = true;
+
+                if (musicBtn) {
+                    musicBtn.textContent = "🔊";
+                }
+
+            })
+            .catch(function () {
+
+                // Browser blocked autoplay.
+                // First interaction will try again.
+
+            });
+    }
+
+
+    // Try automatically
+    startWeddingMusic();
+
+
+    // Try when guest touches
+    document.addEventListener(
+        "touchstart",
+        startWeddingMusic,
+        { once: true, passive: true }
+    );
+
+
+    // Try when guest scrolls
+    document.addEventListener(
+        "scroll",
+        startWeddingMusic,
+        { once: true, passive: true }
+    );
+
+
+    // Try on any click
+    document.addEventListener(
+        "click",
+        startWeddingMusic,
+        { once: true }
+    );
+
+
+    // ===============================
+    // MUSIC BUTTON
+    // ===============================
+
+    if (musicBtn) {
+
+        musicBtn.addEventListener("click", function (event) {
+
+            event.stopPropagation();
+
+            if (weddingMusic.paused) {
+
+                weddingMusic.play()
+                    .then(function () {
+
+                        musicStarted = true;
+                        musicBtn.textContent = "🔊";
+
+                    });
+
+            } else {
+
+                weddingMusic.pause();
+                musicBtn.textContent = "🔇";
+
             }
-        );
+
+        });
 
     }
 
 
     // ===============================
-    // PETALS
+    // COUNTDOWN
+    // ===============================
+
+    const weddingDate =
+        new Date("2026-09-15T19:00:00+03:00").getTime();
+
+
+    function updateCountdown() {
+
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance <= 0) {
+
+            document.getElementById("days").textContent = "0";
+            document.getElementById("hours").textContent = "0";
+            document.getElementById("minutes").textContent = "0";
+            document.getElementById("seconds").textContent = "0";
+
+            return;
+        }
+
+
+        const days =
+            Math.floor(
+                distance /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const hours =
+            Math.floor(
+                (distance %
+                    (1000 * 60 * 60 * 24)) /
+                (1000 * 60 * 60)
+            );
+
+
+        const minutes =
+            Math.floor(
+                (distance %
+                    (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+
+        const seconds =
+            Math.floor(
+                (distance %
+                    (1000 * 60)) /
+                1000
+            );
+
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+    }
+
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+
+    // ===============================
+    // AUTO SCROLL
+    // ===============================
+
+    let autoScrolling = false;
+
+
+    function startAutoScroll() {
+
+        if (autoScrolling) return;
+
+        autoScrolling = true;
+
+
+        const startPosition = window.scrollY;
+        const targetPosition = rsvp.offsetTop;
+
+        const distance =
+            targetPosition - startPosition;
+
+
+        // سرعة ثابتة
+        const speed = 30;
+
+        const duration =
+            Math.max(
+                (distance / speed) * 1000,
+                10000
+            );
+
+
+        const startTime = performance.now();
+
+
+        function animate(currentTime) {
+
+            const elapsed =
+                currentTime - startTime;
+
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            const currentPosition =
+                startPosition +
+                distance * progress;
+
+
+            window.scrollTo(
+                0,
+                currentPosition
+            );
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(animate);
+
+            } else {
+
+                window.scrollTo(
+                    0,
+                    targetPosition
+                );
+
+                autoScrolling = false;
+
+            }
+
+        }
+
+
+        requestAnimationFrame(animate);
+
+    }
+
+
+    // Start automatic scrolling
+    setTimeout(function () {
+
+        startAutoScroll();
+
+    }, 1800);
+
+
+    // ===============================
+    // RSVP
+    // ===============================
+
+    const submitBtn =
+        document.getElementById("submitRSVP");
+
+
+    if (submitBtn) {
+
+        submitBtn.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+
+            const fullName =
+                document
+                    .getElementById("fullName")
+                    .value
+                    .trim();
+
+
+            const attend =
+                document.querySelector(
+                    'input[name="attend"]:checked'
+                );
+
+
+            const wish =
+                document
+                    .getElementById("wish")
+                    .value
+                    .trim();
+
+
+            if (!fullName) {
+
+                alert("Please enter your name.");
+                return;
+
+            }
+
+
+            if (!attend) {
+
+                alert("Please choose Yes or No.");
+                return;
+
+            }
+
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+
+
+            fetch(
+                "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
+                {
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    body: JSON.stringify({
+
+                        fullName: fullName,
+
+                        attendance: attend.value,
+
+                        wish: wish
+
+                    })
+                }
+            )
+
+
+            .then(function () {
+
+                // Hide RSVP
+                rsvp.style.display = "none";
+
+
+                // Show Thank You
+                thankyou.style.display = "flex";
+
+
+                // Stop automatic movement
+                autoScrolling = false;
+
+
+                // Petals
+                for (let i = 0; i < 30; i++) {
+
+                    setTimeout(
+                        createPetal,
+                        i * 250
+                    );
+
+                }
+
+
+                thankyou.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            })
+
+
+            .catch(function () {
+
+                alert("Something went wrong.");
+
+            })
+
+
+            .finally(function () {
+
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit";
+
+            });
+
+        });
+
+    }
+
+
+    // ===============================
+    // FLOATING PETALS
     // ===============================
 
     const petals = [
@@ -1395,9 +1798,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createPetal() {
 
         const container =
-            document.querySelector(
-                ".petals-container"
-            );
+            document.querySelector(".petals-container");
 
 
         if (!container) return;
@@ -1416,8 +1817,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ];
 
 
-        petal.className =
-            "petal";
+        petal.className = "petal";
 
 
         petal.style.left =
@@ -1425,32 +1825,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         petal.style.width =
-            (
-                20 +
-                Math.random() * 18
-            ) + "px";
+            (20 + Math.random() * 18) + "px";
 
 
         petal.style.animationDuration =
-            (
-                6 +
-                Math.random() * 3
-            ) + "s";
+            (6 + Math.random() * 3) + "s";
 
 
-        container.appendChild(
-            petal
-        );
+        container.appendChild(petal);
 
 
-        setTimeout(
-            function () {
+        setTimeout(function () {
 
-                petal.remove();
+            petal.remove();
 
-            },
-            9000
-        );
+        }, 9000);
 
     }
 
