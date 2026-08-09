@@ -519,3 +519,16 @@ h3{
         font-size:34px;
     }
 }
+/* =========================
+   WEDDING DAY NUMBER SIZE
+========================= */
+
+.calendar-days .wedding-day .day-number{
+    font-size:26px !important;
+}
+
+@media(max-width:600px){
+    .calendar-days .wedding-day .day-number{
+        font-size:23px !important;
+    }
+}
