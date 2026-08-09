@@ -17,13 +17,21 @@ const musicBtn = document.getElementById("musicBtn");
 // ===============================
 
 window.addEventListener("load", () => {
+window.addEventListener("load", () => {
 
     welcome.classList.remove("hidden");
     details.classList.remove("hidden");
     rsvp.classList.remove("hidden");
 
-    // Try autoplay
     startWeddingMusic();
+
+    setTimeout(() => {
+
+        if (!autoScrollStopped) {
+            startAutoScroll();
+        }
+
+    }, 1800);
 
 });
 
@@ -796,4 +804,4 @@ function createPetal() {
     }, 9000);
 
     }
-console.log("Wedding script is working");
+
