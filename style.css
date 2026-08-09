@@ -703,8 +703,8 @@ h3{
     }
 
     .calendar-week span{
-        font-size:13px;
-        letter-spacing:1px;
+    font-size:13px;
+    letter-spacing:0;
     }
 
     .calendar-day{
