@@ -21,8 +21,8 @@ html{
 }
 
 body{
-    background: url("Cover.jpg") center center / cover no-repeat fixed;
-    color: var(--text);
+    background:url("Cover.jpg") center center / cover no-repeat fixed;
+    color:var(--text);
     font-family:'Cormorant Garamond',serif;
     overflow-x:hidden;
 }
@@ -37,13 +37,11 @@ body{
     padding:30px;
     position:relative;
 }
-/* =========================
-   COVER HEIGHT
-========================= */
 
 .cover{
     min-height:80vh;
 }
+
 .hidden{
     display:none;
 }
@@ -57,6 +55,7 @@ body{
     flex-direction:column;
     align-items:center;
 }
+
 
 /* =========================
    COVER
@@ -81,6 +80,13 @@ body{
     letter-spacing:2px;
 }
 
+.save-date{
+    margin-top:25px;
+    font-size:18px;
+    letter-spacing:4px;
+    color:var(--rose);
+}
+
 button{
     border:none;
     cursor:pointer;
@@ -89,172 +95,113 @@ button{
 
 #openInvitation,
 #submitRSVP{
-
     margin-top:35px;
-
     padding:16px 45px;
-
     border-radius:50px;
-
     background:var(--rose);
-
     color:white;
-
     font-size:22px;
-
     transition:.3s;
-
 }
 
 #openInvitation:hover,
 #submitRSVP:hover{
-
     transform:translateY(-3px);
-
 }
+
 
 /* =========================
    TITLES
 ========================= */
 
 h2{
-
     color:var(--rose);
-
     font-size:52px;
-
     margin-bottom:20px;
-
 }
 
 p{
-
     font-size:24px;
-
     line-height:1.7;
-
 }
 
 #guestMessage{
-
     font-size:30px;
-
     margin-bottom:20px;
-
 }
 
 .scroll{
-
     margin-top:40px;
-
     font-size:35px;
-
     animation:bounce 1.5s infinite;
-
 }
 
 @keyframes bounce{
-
     0%,100%{
-
         transform:translateY(0);
-
     }
 
     50%{
-
         transform:translateY(10px);
-
     }
-
 }
+
 
 /* =========================
    COUNTDOWN
 ========================= */
 
 .countdown{
-
     display:flex;
-
     justify-content:center;
-
     flex-wrap:wrap;
-
     gap:15px;
-
     margin:35px 0;
-
 }
 
 .box{
-
     width:90px;
-
     height:90px;
-
     background:white;
-
     border-radius:18px;
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     border:1px solid var(--rose-light);
-
     box-shadow:0 8px 20px rgba(0,0,0,.08);
-
 }
 
 .box span{
-
     font-size:34px;
-
     color:var(--rose);
-
 }
 
 .box small{
-
     font-size:16px;
-
 }
+
+
 /* =========================
    LOCATION
 ========================= */
 
 .location-card{
-
     display:block;
-
     text-decoration:none;
-
     color:var(--text);
-
     background:white;
-
     border:1px solid var(--rose-light);
-
     border-radius:20px;
-
     padding:25px;
-
     margin-top:35px;
-
     box-shadow:0 10px 25px rgba(0,0,0,.08);
-
 }
 
 .location-card h3{
-
     color:var(--rose);
-
     margin-bottom:10px;
-
 }
+
 
 /* =========================
    RSVP
@@ -263,137 +210,71 @@ p{
 input:not([type="radio"]),
 select,
 textarea{
-
     width:100%;
-
     padding:15px;
-
     margin:12px 0 25px;
-
     border:1px solid var(--rose-light);
-
     border-radius:12px;
-
     font-size:18px;
-
     font-family:inherit;
-
 }
 
 input[type="radio"]{
-
     margin-right:8px;
-
 }
 
 textarea{
-
     height:130px;
-
     resize:none;
-
 }
 
 label{
-
     font-size:22px;
-
 }
 
 h3{
-
     margin:20px 0;
-
     font-size:28px;
-
 }
+
 
 /* =========================
    THANK YOU
 ========================= */
 
 .heart{
-
     font-size:70px;
-
     margin-bottom:20px;
-
 }
 
 #thankyou p{
-
     margin-top:15px;
-
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media(max-width:600px){
-
-    .cover h1{
-
-        font-size:65px;
-
-    }
-
-    .amp{
-
-        font-size:50px;
-
-    }
-
-    h2{
-
-        font-size:42px;
-
-    }
-
-    p{
-
-        font-size:21px;
-
-    }
-
-    .box{
-
-        width:78px;
-
-        height:78px;
-
-    }
-
-    .box span{
-
-        font-size:28px;
-
-    }
-
-}
 /* =========================
    FLOATING PETALS
 ========================= */
 
 #thankyou{
-    position: relative;
-    overflow: hidden;
+    position:relative;
+    overflow:hidden;
 }
 
 .petals-container{
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 5;
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:5;
 }
 
 .petal{
-    position: absolute;
-    top: -150px;
-    opacity: .9;
-    animation: petalFall linear forwards;
-    will-change: transform;
+    position:absolute;
+    top:-150px;
+    opacity:.9;
+    animation:petalFall linear forwards;
+    will-change:transform;
 }
 
 @keyframes petalFall{
@@ -438,63 +319,12 @@ h3{
             rotate(360deg);
         opacity:0;
     }
-
-}
-/* ===============================
-   WEDDING TIME
-   =============================== */
-
-.wedding-time {
-    margin: 15px 0 28px;
-    text-align: center;
 }
 
-.wedding-time p {
-    margin: 0 0 6px;
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.75;
-}
-
-.wedding-time h3 {
-    margin: 0;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 34px;
-    font-weight: 600;
-    letter-spacing: 2px;
-}
-/* =========================
-   SAVE THE DATE
-========================= */
-
-.save-date{
-    margin-top:25px;
-    font-size:18px;
-    letter-spacing:4px;
-    color:var(--rose);
-}
 
 /* =========================
-   OPEN INVITATION
-========================= */
-
-#openInvitation{
-    margin-top:30px;
-    padding:16px 45px;
-    border-radius:50px;
-    background:var(--rose);
-    color:white;
-    font-size:22px;
-    transition:.3s;
-}
-
-#openInvitation:hover{
-    transform:translateY(-3px);
-}
-/* ===============================
    WEDDING CALENDAR
-================================ */
+========================= */
 
 .wedding-calendar{
     width:100%;
@@ -503,14 +333,20 @@ h3{
     text-align:center;
 }
 
+
+/* MONTH */
+
 .calendar-month{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:22px;
+
     color:var(--rose);
+
     font-size:30px;
     letter-spacing:8px;
+
     margin-bottom:35px;
 }
 
@@ -523,129 +359,153 @@ h3{
 }
 
 
-/* DAYS OF WEEK */
+/* =========================
+   DAYS OF WEEK
+========================= */
 
 .calendar-week{
+    width:100%;
+
     display:grid;
-    grid-template-columns:repeat(7, 1fr);
+    grid-template-columns:repeat(7,1fr);
+
     gap:0;
-    margin-bottom:12px;
+
+    margin-bottom:8px;
 }
 
 .calendar-week span{
+    width:100%;
+    text-align:center;
+
     font-size:16px;
-    letter-spacing:2px;
+    letter-spacing:1px;
     color:var(--text);
 }
 
 
-/* DATES */
+/* =========================
+   CALENDAR NUMBERS
+========================= */
 
 .calendar-days{
+    width:100%;
+
     display:grid;
     grid-template-columns:repeat(7,1fr);
+
     gap:0;
+
     align-items:center;
 }
 
 .calendar-day{
-    height:65px;
+    width:100%;
+    height:70px;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     position:relative;
+
     font-size:25px;
     color:var(--text);
 }
 
 
-/* WEDDING DAY */
+/* =========================
+   NORMAL DATE
+========================= */
 
-.calendar-day.wedding-day{
-    color:var(--rose);
-    font-weight:600;
+.calendar-day:not(.wedding-day){
+    color:var(--text);
 }
 
 
-/* HEART AROUND 15 */
-
-.calendar-day.wedding-day::before{
-    content:"";
-    position:absolute;
-
-    width:58px;
-    height:52px;
-
-    border:2px solid var(--rose);
-
-    transform:rotate(-45deg);
-
-    border-radius:
-        50% 50% 0 50%;
-
-    top:5px;
-    left:50%;
-
-    margin-left:-29px;
-}
-
-
-/* ===============================
-   WEDDING DAY HEART
-================================ */
+/* =========================
+   WEDDING DAY
+========================= */
 
 .calendar-day.wedding-day{
     position:relative;
+
     color:var(--rose);
+
     font-weight:500;
+
     z-index:1;
 }
 
+
+/*
+   الرقم نفسه
+   يفضل في منتصف العمود
+*/
+
 .day-number{
     position:relative;
-    z-index:3;
+
+    z-index:4;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     width:100%;
     height:100%;
+
+    color:var(--rose);
+
+    font-size:25px;
 }
+
+
+/* =========================
+   THIN HEART AROUND 15
+========================= */
 
 .heart-outline{
     position:absolute;
 
-    width:62px;
-    height:58px;
+    width:66px;
+    height:61px;
 
     left:50%;
     top:50%;
 
-    transform:translate(-50%,-53%);
+    transform:translate(-50%,-52%);
 
     z-index:2;
 
     pointer-events:none;
 
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 82 L12 45 C-4 29 5 7 25 7 C37 7 45 14 50 23 C55 14 63 7 75 7 C95 7 104 29 88 45 Z' fill='none' stroke='%23c8a06b' stroke-width='2'/%3E%3C/svg%3E");
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 82 L12 45 C-4 29 5 7 25 7 C37 7 45 14 50 23 C55 14 63 7 75 7 C95 7 104 29 88 45 Z' fill='none' stroke='%23c8a06b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
     background-size:100% 100%;
     background-repeat:no-repeat;
 }
 
+
+/* =========================
+   HEART STEM
+========================= */
+
 .wedding-stem{
     position:absolute;
 
-    width:1.5px;
-    height:30px;
+    width:1px;
+    height:28px;
 
     background:var(--rose);
 
     left:50%;
-    top:calc(50% + 26px);
+
+    top:calc(50% + 27px);
 
     transform:translateX(-50%);
 
-    z-index:1;
+    z-index:2;
 }
 
 .wedding-stem::after{
@@ -653,45 +513,23 @@ h3{
 
     position:absolute;
 
-    width:5px;
-    height:5px;
-
-    border:1px solid var(--rose);
+    width:4px;
+    height:4px;
 
     border-radius:50%;
 
-    background:var(--bg);
+    background:var(--rose);
 
     left:50%;
-    bottom:-4px;
+    bottom:-3px;
 
     transform:translateX(-50%);
 }
 
 
-/* ===============================
-   MOBILE
-================================ */
-
-@media(max-width:600px){
-
-    .wedding-heart{
-        width:68px;
-        height:68px;
-    }
-
-    .wedding-number{
-        font-size:22px;
-    }
-
-    .wedding-stem{
-        height:28px;
-        top:45px;
-    }
-
-}
-
-/* CELEBRATION TIME */
+/* =========================
+   CELEBRATION TIME
+========================= */
 
 .wedding-time{
     margin:75px auto 0;
@@ -725,11 +563,56 @@ h3{
 }
 
 
-/* MOBILE */
+/* =========================
+   LIGHT DIVIDER
+========================= */
+
+.divider{
+    width:110px;
+    height:1px;
+
+    background:var(--rose-light);
+
+    margin:25px auto;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
+    .cover h1{
+        font-size:65px;
+    }
+
+    .amp{
+        font-size:50px;
+    }
+
+    h2{
+        font-size:42px;
+    }
+
+    p{
+        font-size:21px;
+    }
+
+    .box{
+        width:78px;
+        height:78px;
+    }
+
+    .box span{
+        font-size:28px;
+    }
+
+
+    /* CALENDAR */
+
     .wedding-calendar{
+        width:100%;
         max-width:100%;
         margin-top:50px;
     }
@@ -745,16 +628,43 @@ h3{
         width:45px;
     }
 
+    .calendar-week{
+        grid-template-columns:repeat(7,1fr);
+        margin-bottom:6px;
+    }
+
     .calendar-week span{
-    font-size:13px;
-    letter-spacing:0;
+        font-size:13px;
+        letter-spacing:0;
+    }
+
+    .calendar-days{
+        grid-template-columns:repeat(7,1fr);
     }
 
     .calendar-day{
-    height:60px;
-    font-size:22px;
-    text-align:center;
+        height:65px;
+        font-size:22px;
     }
+
+    .day-number{
+        font-size:22px;
+    }
+
+    .heart-outline{
+        width:61px;
+        height:57px;
+
+        transform:translate(-50%,-52%);
+    }
+
+    .wedding-stem{
+        height:27px;
+        top:calc(50% + 25px);
+    }
+
+
+    /* WEDDING TIME */
 
     .wedding-time{
         margin-top:70px;
