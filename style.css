@@ -239,7 +239,7 @@ p{
     justify-content:center;
     width:auto;
     height:auto;
-    color:var(--text);
+    color:#5b4b43 !important;
     font-weight:400;
 }
 
@@ -247,8 +247,9 @@ p{
    WEDDING DAY — 15
 ========================= */
 
-.calendar-day.wedding-day{
-    position:relative;
+.calendar-day.wedding-day .day-number{
+    color:#c8a06b !important;
+    font-weight:600;
 }
 
 .calendar-day.wedding-day .day-number{
