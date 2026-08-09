@@ -228,119 +228,32 @@ p{
 }
 
 /* =========================
-   WEDDING DAY
-========================= */
-
-.calendar-day.wedding-day{
-    position:relative;
-    color:var(--rose);
-    font-weight:600;
-    z-index:1;
-    overflow:visible;
-}
-
-/* =========================
-   NUMBER
+   CALENDAR NUMBERS
 ========================= */
 
 .day-number{
     position:relative;
-    z-index:10;
+    z-index:2;
     display:flex;
     align-items:center;
     justify-content:center;
     width:auto;
     height:auto;
+    color:var(--text);
+    font-weight:400;
+}
+
+/* =========================
+   WEDDING DAY — 15
+========================= */
+
+.calendar-day.wedding-day{
+    position:relative;
+}
+
+.calendar-day.wedding-day .day-number{
     color:var(--rose);
-}
-
-/* ===============================
-   WEDDING HEART
-================================ */
-
-.calendar-day.wedding-day .heart-outline{
-    position:absolute;
-
-    width:52px;
-    height:48px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-54%);
-
-    z-index:2;
-    pointer-events:none;
-}
-
-/* Left curve */
-
-.calendar-day.wedding-day .heart-outline::before{
-    content:"";
-
-    position:absolute;
-
-    width:25px;
-    height:36px;
-
-    left:6px;
-    top:2px;
-
-    border:1.5px solid var(--rose);
-    border-right:none;
-
-    border-radius:25px 0 0 25px;
-
-    transform:rotate(-45deg);
-    transform-origin:100% 100%;
-}
-
-/* Right curve */
-
-.calendar-day.wedding-day .heart-outline::after{
-    content:"";
-
-    position:absolute;
-
-    width:25px;
-    height:36px;
-
-    right:6px;
-    top:2px;
-
-    border:1.5px solid var(--rose);
-    border-left:none;
-
-    border-radius:0 25px 25px 0;
-
-    transform:rotate(45deg);
-    transform-origin:0 100%;
-}
-
-/* ===============================
-   WEDDING STEM
-================================ */
-
-.calendar-day.wedding-day .wedding-stem{
-    position:absolute;
-
-    width:1px;
-    height:22px;
-
-    background:var(--rose);
-
-    left:50%;
-    top:calc(50% + 22px);
-
-    transform:translateX(-50%);
-
-    z-index:1;
-}
-
-/* Remove old white circle */
-
-.calendar-day.wedding-day .wedding-stem::after{
-    display:none !important;
+    font-weight:600;
 }
 
 /* =========================
@@ -595,28 +508,6 @@ h3{
     .calendar-day{
         height:60px;
         font-size:22px;
-    }
-
-    /* Wedding heart on mobile */
-
-    .calendar-day.wedding-day .heart-outline{
-        width:50px;
-        height:46px;
-    }
-
-    .calendar-day.wedding-day .heart-outline::before{
-        width:24px;
-        height:35px;
-    }
-
-    .calendar-day.wedding-day .heart-outline::after{
-        width:24px;
-        height:35px;
-    }
-
-    .calendar-day.wedding-day .wedding-stem{
-        height:21px;
-        top:calc(50% + 21px);
     }
 
     .wedding-time{
