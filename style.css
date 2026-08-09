@@ -251,111 +251,6 @@ p{
     color:var(--rose);
 }
 
-/* =========================
-   HEART OUTLINE
-========================= */
-
-.heart-outline{
-    position:absolute;
-    width:52px;
-    height:46px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-54%);
-    z-index:2;
-    pointer-events:none;
-}
-
-/* Left heart curve */
-
-.heart-outline::before{
-    content:"";
-    position:absolute;
-    width:25px;
-    height:25px;
-    left:3px;
-    top:3px;
-
-    border:1.5px solid var(--rose);
-    border-radius:50% 50% 0 50%;
-
-    transform:rotate(-45deg);
-}
-
-/* Right heart curve */
-
-.heart-outline::after{
-    content:"";
-    position:absolute;
-    width:25px;
-    height:25px;
-    right:3px;
-    top:3px;
-
-    border:1.5px solid var(--rose);
-    border-radius:50% 50% 50% 0;
-
-    transform:rotate(45deg);
-}
-
-/* Heart bottom */
-
-.calendar-day.wedding-day .day-number::after{
-    content:"";
-    position:absolute;
-
-    width:32px;
-    height:32px;
-
-    left:50%;
-    top:7px;
-
-    border-left:1.5px solid var(--rose);
-    border-bottom:1.5px solid var(--rose);
-
-    transform:translateX(-50%) rotate(-45deg);
-
-    z-index:-1;
-}
-/* =========================
-   WEDDING STEM
-========================= */
-
-.wedding-stem{
-    position:absolute;
-
-    width:1px;
-    height:26px;
-
-    background:var(--rose);
-
-    left:50%;
-    top:calc(50% + 25px);
-
-    transform:translateX(-50%);
-
-    z-index:1;
-}
-
-.wedding-stem::after{
-    content:"";
-
-    position:absolute;
-
-    width:4px;
-    height:4px;
-
-    border:1px solid var(--rose);
-
-    border-radius:50%;
-
-    background:var(--bg);
-
-    left:50%;
-    bottom:-4px;
-
-    transform:translateX(-50%);
-}
 
 /* =========================
    WEDDING TIME
@@ -735,74 +630,7 @@ h3{
         top: calc(50% + 21px);
     }
 }
-/* ===============================
-   FINAL WEDDING HEART FIX
-================================ */
-
-.calendar-day.wedding-day{
-    position:relative;
-    overflow:visible;
-}
-
-/* Remove all old heart shapes */
-.heart-outline::before,
-.heart-outline::after,
-.calendar-day.wedding-day .day-number::after{
-    content:none !important;
-    display:none !important;
-}
-
-/* Clean heart outline */
-.calendar-day.wedding-day .heart-outline{
-    position:absolute;
-    display:block;
-
-    width:46px;
-    height:42px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-55%);
-
-    z-index:2;
-    pointer-events:none;
-
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 82 C45 76 12 55 12 30 C12 15 22 7 34 7 C42 7 48 12 50 21 C52 12 58 7 66 7 C78 7 88 15 88 30 C88 55 55 76 50 82 Z' fill='none' stroke='%23c8a06b' stroke-width='2'/%3E%3C/svg%3E");
-
-    background-size:100% 100%;
-    background-repeat:no-repeat;
-}
-
-/* Keep 15 exactly centered */
-.calendar-day.wedding-day .day-number{
-    position:relative;
-    z-index:5;
-
-    width:auto;
-    height:auto;
-
-    color:var(--rose);
-}
-
-/* Thin stem under heart */
-.calendar-day.wedding-day .wedding-stem{
-    position:absolute;
-
-    width:1px;
-    height:24px;
-
-    left:50%;
-    top:calc(50% + 19px);
-
-    transform:translateX(-50%);
-
-    background:var(--rose);
-
-    z-index:1;
-}
-
-.calendar-day.wedding-day .wedding-stem::after{
+-stem::after{
     content:"";
 
     position:absolute;
@@ -836,7 +664,7 @@ h3{
 
 }
 /* ===============================
-   FINAL WEDDING HEART
+   WEDDING HEART — FINAL
 ================================ */
 
 .calendar-day.wedding-day{
@@ -844,7 +672,7 @@ h3{
     overflow:visible;
 }
 
-/* Keep the number centered */
+/* The number 15 */
 .calendar-day.wedding-day .day-number{
     position:relative;
     z-index:10;
@@ -853,14 +681,14 @@ h3{
     color:var(--rose);
 }
 
-/* Larger thin heart */
+/* Heart outline */
 .calendar-day.wedding-day .heart-outline{
     position:absolute;
-    width:66px;
-    height:60px;
+    width:52px;
+    height:48px;
     left:50%;
     top:50%;
-    transform:translate(-50%,-53%);
+    transform:translate(-50%,-54%);
     z-index:2;
     pointer-events:none;
 }
@@ -869,13 +697,13 @@ h3{
 .calendar-day.wedding-day .heart-outline::before{
     content:"";
     position:absolute;
-    width:33px;
-    height:48px;
-    left:7px;
+    width:25px;
+    height:36px;
+    left:6px;
     top:2px;
     border:1.5px solid var(--rose);
     border-right:none;
-    border-radius:32px 0 0 32px;
+    border-radius:25px 0 0 25px;
     transform:rotate(-45deg);
     transform-origin:100% 100%;
 }
@@ -884,35 +712,30 @@ h3{
 .calendar-day.wedding-day .heart-outline::after{
     content:"";
     position:absolute;
-    width:33px;
-    height:48px;
-    right:7px;
+    width:25px;
+    height:36px;
+    right:6px;
     top:2px;
     border:1.5px solid var(--rose);
     border-left:none;
-    border-radius:0 32px 32px 0;
+    border-radius:0 25px 25px 0;
     transform:rotate(45deg);
     transform-origin:0 100%;
 }
 
-/* Remove the old extra heart shape */
-.calendar-day.wedding-day .day-number::after{
-    display:none !important;
-}
-
-/* Thin stem */
+/* Stem */
 .calendar-day.wedding-day .wedding-stem{
     position:absolute;
     width:1px;
-    height:28px;
+    height:22px;
     background:var(--rose);
     left:50%;
-    top:calc(50% + 27px);
+    top:calc(50% + 22px);
     transform:translateX(-50%);
     z-index:1;
 }
 
-/* Remove the white circle at the bottom */
+/* No white circle */
 .calendar-day.wedding-day .wedding-stem::after{
     display:none !important;
 }
@@ -921,22 +744,22 @@ h3{
 @media(max-width:600px){
 
     .calendar-day.wedding-day .heart-outline{
-        width:62px;
-        height:57px;
+        width:50px;
+        height:46px;
     }
 
     .calendar-day.wedding-day .heart-outline::before{
-        width:31px;
-        height:46px;
+        width:24px;
+        height:35px;
     }
 
     .calendar-day.wedding-day .heart-outline::after{
-        width:31px;
-        height:46px;
+        width:24px;
+        height:35px;
     }
 
     .calendar-day.wedding-day .wedding-stem{
-        height:26px;
-        top:calc(50% + 25px);
+        height:21px;
+        top:calc(50% + 21px);
     }
 }
