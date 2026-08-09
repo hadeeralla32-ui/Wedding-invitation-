@@ -168,7 +168,8 @@ const musicBtn = document.getElementById("musicBtn");
 
 let musicStarted = false;
 
-function startMusic() {
+function startWeddingMusic() {
+
     if (musicStarted) return;
 
     weddingMusic.play()
@@ -179,28 +180,48 @@ function startMusic() {
         .catch(() => {});
 }
 
-// Any first touch anywhere on the page
-document.addEventListener("touchstart", startMusic, {
-    once: true,
-    passive: true
+
+// Try autoplay when the page opens
+window.addEventListener("load", () => {
+    startWeddingMusic();
 });
 
-// Also support taps on devices that use pointer events
-document.addEventListener("pointerdown", startMusic, {
-    once: true
-});
 
-// Mute / unmute button
-musicBtn.addEventListener("click", function (event) {
+// Start music on the first touch
+document.addEventListener("touchstart", () => {
+    startWeddingMusic();
+}, { once: true, passive: true });
+
+
+// Start music on the first scroll
+document.addEventListener("scroll", () => {
+    startWeddingMusic();
+}, { once: true, passive: true });
+
+
+// Start music on the first pointer interaction
+document.addEventListener("pointerdown", () => {
+    startWeddingMusic();
+}, { once: true });
+
+
+// Music mute / unmute button
+musicBtn.addEventListener("click", (event) => {
+
     event.stopPropagation();
 
     if (weddingMusic.paused) {
+
         weddingMusic.play().then(() => {
             musicStarted = true;
             musicBtn.textContent = "🔊";
         });
+
     } else {
+
         weddingMusic.pause();
         musicBtn.textContent = "🔇";
+
     }
+
 });
