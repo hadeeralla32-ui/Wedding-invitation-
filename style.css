@@ -735,3 +735,103 @@ h3{
         top: calc(50% + 21px);
     }
 }
+/* ===============================
+   FINAL WEDDING HEART FIX
+================================ */
+
+.calendar-day.wedding-day{
+    position:relative;
+    overflow:visible;
+}
+
+/* Remove all old heart shapes */
+.heart-outline::before,
+.heart-outline::after,
+.calendar-day.wedding-day .day-number::after{
+    content:none !important;
+    display:none !important;
+}
+
+/* Clean heart outline */
+.calendar-day.wedding-day .heart-outline{
+    position:absolute;
+    display:block;
+
+    width:46px;
+    height:42px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-55%);
+
+    z-index:2;
+    pointer-events:none;
+
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 82 C45 76 12 55 12 30 C12 15 22 7 34 7 C42 7 48 12 50 21 C52 12 58 7 66 7 C78 7 88 15 88 30 C88 55 55 76 50 82 Z' fill='none' stroke='%23c8a06b' stroke-width='2'/%3E%3C/svg%3E");
+
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+}
+
+/* Keep 15 exactly centered */
+.calendar-day.wedding-day .day-number{
+    position:relative;
+    z-index:5;
+
+    width:auto;
+    height:auto;
+
+    color:var(--rose);
+}
+
+/* Thin stem under heart */
+.calendar-day.wedding-day .wedding-stem{
+    position:absolute;
+
+    width:1px;
+    height:24px;
+
+    left:50%;
+    top:calc(50% + 19px);
+
+    transform:translateX(-50%);
+
+    background:var(--rose);
+
+    z-index:1;
+}
+
+.calendar-day.wedding-day .wedding-stem::after{
+    content:"";
+
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    border:1px solid var(--rose);
+    border-radius:50%;
+
+    background:var(--bg);
+
+    left:50%;
+    bottom:-4px;
+
+    transform:translateX(-50%);
+}
+
+/* Mobile size */
+@media(max-width:600px){
+
+    .calendar-day.wedding-day .heart-outline{
+        width:44px;
+        height:40px;
+    }
+
+    .calendar-day.wedding-day .wedding-stem{
+        height:23px;
+        top:calc(50% + 19px);
+    }
+
+}
