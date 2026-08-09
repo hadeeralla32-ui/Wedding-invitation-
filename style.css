@@ -257,64 +257,58 @@ p{
 
 .heart-outline{
     position:absolute;
-    width:58px;
-    height:52px;
+    width:52px;
+    height:46px;
     left:50%;
     top:50%;
-    transform:translate(-50%,-51%);
-    z-index:1;
+    transform:translate(-50%,-54%);
+    z-index:2;
     pointer-events:none;
 }
 
-/* Left side of heart */
+/* Left heart curve */
 
 .heart-outline::before{
     content:"";
     position:absolute;
-    width:29px;
-    height:43px;
-    left:7px;
+    width:25px;
+    height:25px;
+    left:3px;
     top:3px;
 
     border:1.5px solid var(--rose);
-    border-right:none;
-
-    border-radius:30px 0 0 30px;
+    border-radius:50% 50% 0 50%;
 
     transform:rotate(-45deg);
-    transform-origin:100% 100%;
 }
 
-/* Right side of heart */
+/* Right heart curve */
 
 .heart-outline::after{
     content:"";
     position:absolute;
-    width:29px;
-    height:43px;
-    right:7px;
+    width:25px;
+    height:25px;
+    right:3px;
     top:3px;
 
     border:1.5px solid var(--rose);
-    border-left:none;
-
-    border-radius:0 30px 30px 0;
+    border-radius:50% 50% 50% 0;
 
     transform:rotate(45deg);
-    transform-origin:0 100%;
 }
 
-/* Heart lower point */
+/* Heart bottom */
 
 .calendar-day.wedding-day .day-number::after{
     content:"";
     position:absolute;
 
-    width:39px;
-    height:39px;
+    width:32px;
+    height:32px;
 
     left:50%;
-    top:8px;
+    top:7px;
 
     border-left:1.5px solid var(--rose);
     border-bottom:1.5px solid var(--rose);
@@ -323,7 +317,6 @@ p{
 
     z-index:-1;
 }
-
 /* =========================
    WEDDING STEM
 ========================= */
@@ -733,8 +726,8 @@ h3{
     }
 
     .calendar-day.wedding-day .heart-outline {
-        width: 52px;
-        height: 48px;
+        width: 42px;
+        height: 38px;
     }
 
     .calendar-day.wedding-day .wedding-stem {
