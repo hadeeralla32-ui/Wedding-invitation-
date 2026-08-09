@@ -120,15 +120,278 @@ mode: "no-cors",
 
     })
 
+// ===============================
+// ELEMENTS
+// ===============================
+
+const cover = document.getElementById("cover");
+const welcome = document.getElementById("welcome");
+const details = document.getElementById("details");
+const rsvp = document.getElementById("rsvp");
+const thankyou = document.getElementById("thankyou");
+
+const weddingMusic = document.getElementById("weddingMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+
+// ===============================
+// SHOW INVITATION
+// ===============================
+
+window.addEventListener("load", () => {
+
+    welcome.classList.remove("hidden");
+    details.classList.remove("hidden");
+    rsvp.classList.remove("hidden");
+
+    startWeddingMusic();
+
+});
+
+
+// ===============================
+// GUEST NAME
+// ===============================
+
+const params = new URLSearchParams(window.location.search);
+const guest = params.get("guest");
+
+if (guest) {
+
+    document.getElementById("guestMessage").textContent =
+        `Dear ${guest},`;
+
+}
+
+
+// ===============================
+// MUSIC
+// ===============================
+
+let musicStarted = false;
+
+function startWeddingMusic() {
+
+    if (musicStarted) return;
+
+    weddingMusic.play()
+        .then(() => {
+
+            musicStarted = true;
+            musicBtn.textContent = "🔊";
+
+        })
+        .catch(() => {
+
+            // Browser blocked autoplay
+
+        });
+
+}
+
+
+// Try to start music on any user interaction
+
+document.addEventListener("touchstart", startWeddingMusic, {
+    once: true,
+    passive: true
+});
+
+document.addEventListener("touchmove", startWeddingMusic, {
+    once: true,
+    passive: true
+});
+
+document.addEventListener("pointerdown", startWeddingMusic, {
+    once: true
+});
+
+document.addEventListener("wheel", startWeddingMusic, {
+    once: true,
+    passive: true
+});
+
+document.addEventListener("scroll", startWeddingMusic, {
+    once: true,
+    passive: true
+});
+
+document.addEventListener("click", startWeddingMusic, {
+    once: true
+});
+
+
+// Music button
+
+musicBtn.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    if (weddingMusic.paused) {
+
+        weddingMusic.play()
+            .then(() => {
+
+                musicStarted = true;
+                musicBtn.textContent = "🔊";
+
+            });
+
+    } else {
+
+        weddingMusic.pause();
+        musicBtn.textContent = "🔇";
+
+    }
+
+});
+
+
+// ===============================
+// COUNTDOWN
+// ===============================
+
+const weddingDate =
+    new Date("September 15, 2026 19:00:00").getTime();
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance <= 0) {
+
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
+
+        return;
+
+    }
+
+    const days =
+        Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    const hours =
+        Math.floor(
+            (distance % (1000 * 60 * 60 * 24))
+            / (1000 * 60 * 60)
+        );
+
+    const minutes =
+        Math.floor(
+            (distance % (1000 * 60 * 60))
+            / (1000 * 60)
+        );
+
+    const seconds =
+        Math.floor(
+            (distance % (1000 * 60))
+            / 1000
+        );
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+
+// ===============================
+// RSVP
+// ===============================
+
+const submitBtn = document.getElementById("submitRSVP");
+
+submitBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    const fullName =
+        document.getElementById("fullName").value.trim();
+
+    const attend =
+        document.querySelector(
+            'input[name="attend"]:checked'
+        );
+
+    const guests =
+        document.getElementById("guests").value;
+
+    const wish =
+        document.getElementById("wish").value.trim();
+
+    if (!fullName) {
+
+        alert("Please enter your name.");
+        return;
+
+    }
+
+    if (!attend) {
+
+        alert("Please choose Yes or No.");
+        return;
+
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    fetch(
+        "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
+        {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify({
+
+                fullName: fullName,
+                attendance: attend.value,
+                guests: guests,
+                wish: wish
+
+            })
+        }
+    )
+
+    .then(() => {
+
+        rsvp.style.display = "none";
+        thankyou.style.display = "flex";
+
+        for (let i = 0; i < 30; i++) {
+
+            setTimeout(createPetal, i * 250);
+
+        }
+
+        thankyou.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    })
+
+    .catch(() => {
+
+        alert("Something went wrong.");
+
+    })
+
     .finally(() => {
 
         submitBtn.disabled = false;
-
         submitBtn.textContent = "Submit";
 
     });
 
 });
+
+
 // ===============================
 // FLOATING PETALS
 // ===============================
@@ -140,90 +403,34 @@ const petals = [
 
 function createPetal() {
 
-    const container = document.querySelector(".petals-container");
+    const container =
+        document.querySelector(".petals-container");
 
     if (!container) return;
 
-    const petal = document.createElement("img");
+    const petal =
+        document.createElement("img");
 
-    petal.src = petals[Math.floor(Math.random() * petals.length)];
+    petal.src =
+        petals[Math.floor(Math.random() * petals.length)];
 
     petal.className = "petal";
 
-    petal.style.left = Math.random() * 100 + "%";
+    petal.style.left =
+        Math.random() * 100 + "%";
 
-    petal.style.width = (20 + Math.random() * 18) + "px";
+    petal.style.width =
+        (20 + Math.random() * 18) + "px";
 
-    petal.style.animationDuration = (6 + Math.random() * 3) + "s";
+    petal.style.animationDuration =
+        (6 + Math.random() * 3) + "s";
 
     container.appendChild(petal);
 
     setTimeout(() => {
+
         petal.remove();
+
     }, 9000);
 
 }
-const weddingMusic = document.getElementById("weddingMusic");
-const musicBtn = document.getElementById("musicBtn");
-
-let musicStarted = false;
-
-function startWeddingMusic() {
-
-    if (musicStarted) return;
-
-    weddingMusic.play()
-        .then(() => {
-            musicStarted = true;
-            musicBtn.textContent = "🔊";
-        })
-        .catch(() => {});
-}
-
-
-// Try to start automatically when the invitation opens
-window.addEventListener("load", () => {
-    startWeddingMusic();
-});
-
-
-// Start when the guest touches the screen
-document.addEventListener("touchstart", startWeddingMusic, {
-    once: true,
-    passive: true
-});
-
-
-// Start when the guest starts scrolling
-document.addEventListener("scroll", startWeddingMusic, {
-    once: true,
-    passive: true
-});
-
-
-// Start on any pointer interaction
-document.addEventListener("pointerdown", startWeddingMusic, {
-    once: true
-});
-
-
-// Mute / unmute button
-musicBtn.addEventListener("click", (event) => {
-
-    event.stopPropagation();
-
-    if (weddingMusic.paused) {
-
-        weddingMusic.play().then(() => {
-            musicStarted = true;
-            musicBtn.textContent = "🔊";
-        });
-
-    } else {
-
-        weddingMusic.pause();
-        musicBtn.textContent = "🔇";
-
-    }
-
-});
