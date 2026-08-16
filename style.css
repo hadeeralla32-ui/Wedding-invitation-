@@ -534,13 +534,4 @@ h3{
         font-weight:600 !important;
     }
 }
-/* =========================
-   REDUCE SPACE BETWEEN SECTIONS
-========================= */
 
-#welcome,
-#details,
-#rsvp,
-#thankyou{
-    min-height:30vh;
-}
