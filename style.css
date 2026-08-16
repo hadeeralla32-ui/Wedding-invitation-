@@ -534,13 +534,3 @@ h3{
         font-weight:600 !important;
     }
 }
-/* =========================
-   COMPACT SECTIONS
-========================= */
-
-#welcome,
-#details,
-#rsvp,
-#thankyou{
-    min-height:100vh;
-}
