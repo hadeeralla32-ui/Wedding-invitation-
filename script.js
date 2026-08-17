@@ -469,9 +469,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 )
                 .then(function () {
 
-                    showThankYou();
+    setTimeout(function () {
 
-                })
+        showThankYou();
+
+    }, 500);
+
+})
                 .catch(function () {
 
                     alert(
