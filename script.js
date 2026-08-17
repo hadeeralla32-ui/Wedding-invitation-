@@ -521,10 +521,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
-
-                
-
-
                 // ===============================
                 // SENDING
                 // ===============================
