@@ -534,3 +534,13 @@ h3{
         font-weight:600 !important;
     }
 }
+/* =========================
+   SECTION SPACING
+========================= */
+
+#welcome,
+#details,
+#rsvp,
+#thankyou{
+    margin-top:-15vh;
+}
