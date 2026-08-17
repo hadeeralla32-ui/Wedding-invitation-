@@ -10,17 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const rsvp = document.getElementById("rsvp");
     const thankyou = document.getElementById("thankyou");
 
-    const openInvitation =
-        document.getElementById("openInvitation");
+    const openInvitation = document.getElementById("openInvitation");
 
-    const weddingMusic =
-        document.getElementById("weddingMusic");
+    const weddingMusic = document.getElementById("weddingMusic");
+    const musicBtn = document.getElementById("musicBtn");
 
-    const musicBtn =
-        document.getElementById("musicBtn");
-
-    const submitBtn =
-        document.getElementById("submitRSVP");
+    const submitBtn = document.getElementById("submitRSVP");
 
 
     // ===============================
@@ -36,22 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // GUEST NAME
     // ===============================
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get("guest");
 
-    const guest =
-        params.get("guest");
-
-    const guestMessage =
-        document.getElementById("guestMessage");
+    const guestMessage = document.getElementById("guestMessage");
 
     if (guest && guestMessage) {
-
-        guestMessage.textContent =
-            "Dear " + guest + ",";
-
+        guestMessage.textContent = "Dear " + guest + ",";
     }
 
 
@@ -79,12 +65,9 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(function () {
 
-                // Browser blocked autoplay.
-                // The Open button is already a user interaction,
-                // so normally music will start here.
+                // Browser may block autoplay
 
             });
-
     }
 
 
@@ -94,41 +77,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (musicBtn) {
 
-        musicBtn.addEventListener(
-            "click",
-            function (event) {
+        musicBtn.addEventListener("click", function (event) {
 
-                event.stopPropagation();
+            event.stopPropagation();
 
-                if (!weddingMusic) {
-                    return;
-                }
+            if (!weddingMusic) {
+                return;
+            }
 
+            if (weddingMusic.paused) {
 
-                if (weddingMusic.paused) {
+                weddingMusic.play()
+                    .then(function () {
 
-                    weddingMusic.play()
-                        .then(function () {
+                        musicStarted = true;
+                        musicBtn.textContent = "🔊";
 
-                            musicStarted = true;
+                    });
 
-                            musicBtn.textContent =
-                                "🔊";
+            } else {
 
-                        });
-
-                } else {
-
-                    weddingMusic.pause();
-
-                    musicBtn.textContent =
-                        "🔇";
-
-                }
+                weddingMusic.pause();
+                musicBtn.textContent = "🔇";
 
             }
-        );
 
+        });
     }
 
 
@@ -138,16 +112,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showInvitation() {
 
-        // Start music ONLY here
+        // Start music
         startWeddingMusic();
 
 
         // Hide cover
         if (cover) {
-
-            cover.style.display =
-                "none";
-
+            cover.style.display = "none";
         }
 
 
@@ -165,11 +136,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // Make sure page starts at Welcome
+        // Start from Welcome
         window.scrollTo(0, 0);
 
 
-        // Give Welcome a moment before scrolling
+        // Start auto scroll after 1.8 seconds
         setTimeout(function () {
 
             startAutoScroll();
@@ -185,14 +156,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (openInvitation) {
 
-        openInvitation.addEventListener(
-            "click",
-            function () {
+        openInvitation.addEventListener("click", function () {
 
-                showInvitation();
+            showInvitation();
 
-            }
-        );
+        });
 
     }
 
@@ -211,22 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
         autoScrolling = true;
 
+        const startPosition = window.scrollY;
+        const targetPosition = rsvp.offsetTop;
 
-        const startPosition =
-            window.scrollY;
-
-
-        const targetPosition =
-            rsvp.offsetTop;
-
-
-        const distance =
-            targetPosition -
-            startPosition;
-
+        const distance = targetPosition - startPosition;
 
         if (distance <= 0) {
 
@@ -236,23 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /*
-        ==================================
-        AUTO SCROLL TIMING
-        ==================================
-
-        The whole journey is intentionally
-        slow enough to read comfortably.
-
-        Increasing this number makes it slower.
-        ==================================
-        */
-
+        // 34 seconds
         const duration = 34000;
 
-
-        const startTime =
-            performance.now();
+        const startTime = performance.now();
 
 
         function animate(currentTime) {
@@ -261,23 +206,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            const elapsed = currentTime - startTime;
 
-            const elapsed =
-                currentTime -
-                startTime;
-
-
-            const progress =
-                Math.min(
-                    elapsed / duration,
-                    1
-                );
+            const progress = Math.min(
+                elapsed / duration,
+                1
+            );
 
 
-            /*
-            Smooth ease-in-out movement
-            */
-
+            // Smooth movement
             const easedProgress =
                 progress < 0.5
                     ? 2 * progress * progress
@@ -290,10 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const currentPosition =
                 startPosition +
-                (
-                    distance *
-                    easedProgress
-                );
+                distance * easedProgress;
 
 
             window.scrollTo(
@@ -340,7 +274,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         autoScrolling = false;
 
-
         if (autoScrollFrame) {
 
             cancelAnimationFrame(
@@ -366,13 +299,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateCountdown() {
 
-        const now =
-            new Date().getTime();
+        const now = new Date().getTime();
 
-
-        const distance =
-            weddingDate -
-            now;
+        const distance = weddingDate - now;
 
 
         const daysElement =
@@ -447,17 +376,10 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        daysElement.textContent =
-            days;
-
-        hoursElement.textContent =
-            hours;
-
-        minutesElement.textContent =
-            minutes;
-
-        secondsElement.textContent =
-            seconds;
+        daysElement.textContent = days;
+        hoursElement.textContent = hours;
+        minutesElement.textContent = minutes;
+        secondsElement.textContent = seconds;
 
     }
 
@@ -487,6 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 stopAutoScroll();
 
 
+                // Get name
                 const fullName =
                     document
                         .getElementById("fullName")
@@ -494,12 +417,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         .trim();
 
 
-                const attend =
-                    document.querySelector(
-                        'input[name="attend"]:checked'
-                    );
-
-
+                // Get wish
                 const wish =
                     document
                         .getElementById("wish")
@@ -521,12 +439,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
+
                 // ===============================
                 // SENDING
                 // ===============================
 
-                submitBtn.disabled =
-                    true;
+                submitBtn.disabled = true;
 
                 submitBtn.textContent =
                     "Sending...";
@@ -541,193 +459,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         body: JSON.stringify({
 
-                            fullName:
-                                fullName,
+                            fullName: fullName,
 
-                            attendance:
-                                attend.value,
-
-                            wish:
-                                wish
+                            wish: wish
 
                         })
 
                     }
                 )
-
-
                 .then(function () {
 
-                    // ===============================
-                    // HIDE RSVP
-                    // ===============================
+                    showThankYou();
 
-                    if (rsvp) {
+                })
+                .catch(function () {
 
-                        rsvp.style.display =
-                            "none";
-
-                    }
-
-
-                    // ===============================
-                    // SHOW THANK YOU
-                    // ===============================
-
-                    if (thankyou) {
-
-                        thankyou.classList.remove(
-                            "hidden"
-                        );
-
-                        thankyou.style.display =
-                            "flex";
-
-                    }
-
-
-                    // ===============================
-                    // PETALS
-                    // ===============================
-
-                    for (
-                        let i = 0;
-                        i < 30;
-                        i++
-                    ) {
-
-                        setTimeout(
-                            createPetal,
-                            i * 250
-                        );
-
-                    }
-
-
-                    // ===============================
-// ===============================
-// RSVP
-// ===============================
-
-if (submitBtn) {
-
-    submitBtn.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            // Stop auto scroll
-            stopAutoScroll();
-
-            const fullName =
-                document
-                    .getElementById("fullName")
-                    .value
-                    .trim();
-
-            const wish =
-                document
-                    .getElementById("wish")
-                    .value
-                    .trim();
-
-
-            // ===============================
-            // VALIDATION
-            // ===============================
-
-            if (!fullName) {
-
-                alert("Please enter your name.");
-
-                return;
-
-            }
-
-
-            // ===============================
-            // SENDING
-            // ===============================
-
-            submitBtn.disabled = true;
-
-            submitBtn.textContent = "Sending...";
-
-
-            fetch(
-                "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
-                {
-                    method: "POST",
-                    mode: "no-cors",
-
-                    body: JSON.stringify({
-
-                        fullName: fullName,
-
-                        wish: wish
-
-                    })
-
-                }
-            );
-
-
-            // ===============================
-            // SHOW THANK YOU
-            // ===============================
-
-            setTimeout(function () {
-
-                if (rsvp) {
-                    rsvp.style.display = "none";
-                }
-
-                if (thankyou) {
-
-                    thankyou.classList.remove("hidden");
-
-                    thankyou.style.display = "flex";
-
-                }
-
-
-                // ===============================
-                // PETALS
-                // ===============================
-
-                for (
-                    let i = 0;
-                    i < 30;
-                    i++
-                ) {
-
-                    setTimeout(
-                        createPetal,
-                        i * 250
+                    alert(
+                        "Something went wrong."
                     );
 
-                }
+                    submitBtn.disabled = false;
+
+                    submitBtn.textContent =
+                        "Submit";
+
+                });
+
+            }
+        );
+
+    }
 
 
-                // ===============================
-                // SCROLL TO THANK YOU
-                // ===============================
+    // ===============================
+    // SHOW THANK YOU
+    // ===============================
 
-                if (thankyou) {
+    function showThankYou() {
 
-                    thankyou.scrollIntoView({
-                        behavior: "smooth"
-                    });
+        if (rsvp) {
+            rsvp.style.display = "none";
+        }
 
-                }
 
-            }, 1200);
+        if (thankyou) {
+
+            thankyou.classList.remove(
+                "hidden"
+            );
+
+            thankyou.style.display =
+                "flex";
 
         }
-    );
 
-}
+
+        // Create petals
+        for (
+            let i = 0;
+            i < 30;
+            i++
+        ) {
+
+            setTimeout(
+                createPetal,
+                i * 250
+            );
+
+        }
+
+
+        // Scroll to Thank You
+        if (thankyou) {
+
+            thankyou.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent =
+            "Submit";
+
+    }
 
 
     // ===============================
@@ -771,25 +588,21 @@ if (submitBtn) {
 
 
         petal.style.left =
-            Math.random() *
-            100 +
-            "%";
+            Math.random() * 100 + "%";
 
 
         petal.style.width =
             (
                 20 +
                 Math.random() * 18
-            ) +
-            "px";
+            ) + "px";
 
 
         petal.style.animationDuration =
             (
                 6 +
                 Math.random() * 3
-            ) +
-            "s";
+            ) + "s";
 
 
         container.appendChild(
