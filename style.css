@@ -28,7 +28,7 @@ body{
 }
 
 .screen{
-    min-height:100vh;
+    min-height:90vh;
     width:100%;
     display:flex;
     justify-content:center;
@@ -533,14 +533,4 @@ h3{
         font-size:27px !important;
         font-weight:600 !important;
     }
-}
-/* =========================
-   SECTION SPACING
-========================= */
-
-#welcome,
-#details,
-#rsvp,
-#thankyou{
-    min-height:55vh;
 }
