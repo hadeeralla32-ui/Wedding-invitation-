@@ -556,3 +556,26 @@ h3{
 #thankyou{
     margin-top:-20vh;
 }
+/* =========================
+   COUPLE NAMES
+========================= */
+
+.couple-names{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin-top:25px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    font-weight:500;
+    color:var(--text);
+}
+
+.outline-heart{
+    font-family:Arial, sans-serif;
+    font-size:30px;
+    font-weight:300;
+    color:var(--rose);
+    line-height:1;
+}
