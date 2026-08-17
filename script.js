@@ -10,19 +10,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const rsvp = document.getElementById("rsvp");
     const thankyou = document.getElementById("thankyou");
 
-    const openInvitation = document.getElementById("openInvitation");
+    const openInvitation =
+        document.getElementById("openInvitation");
 
-    const weddingMusic = document.getElementById("weddingMusic");
-    const musicBtn = document.getElementById("musicBtn");
+    const weddingMusic =
+        document.getElementById("weddingMusic");
 
-    const submitBtn = document.getElementById("submitRSVP");
+    const musicBtn =
+        document.getElementById("musicBtn");
+
+    const submitBtn =
+        document.getElementById("submitRSVP");
 
 
     // ===============================
     // STATE
     // ===============================
 
-    let musicStarted = false;
     let autoScrolling = false;
     let autoScrollFrame = null;
 
@@ -31,13 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // GUEST NAME
     // ===============================
 
-    const params = new URLSearchParams(window.location.search);
-    const guest = params.get("guest");
+    const params =
+        new URLSearchParams(window.location.search);
 
-    const guestMessage = document.getElementById("guestMessage");
+    const guest =
+        params.get("guest");
+
+    const guestMessage =
+        document.getElementById("guestMessage");
 
     if (guest && guestMessage) {
-        guestMessage.textContent = "Dear " + guest + ",";
+        guestMessage.textContent =
+            "Dear " + guest + ",";
     }
 
 
@@ -56,8 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
         weddingMusic.play()
             .then(function () {
 
-                musicStarted = true;
-
                 if (musicBtn) {
                     musicBtn.textContent = "🔊";
                 }
@@ -65,9 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(function () {
 
-                // Browser may block autoplay
+                // Music may be blocked by browser
 
             });
+
     }
 
 
@@ -77,32 +85,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (musicBtn) {
 
-        musicBtn.addEventListener("click", function (event) {
+        musicBtn.addEventListener(
+            "click",
+            function (event) {
 
-            event.stopPropagation();
+                event.stopPropagation();
 
-            if (!weddingMusic) {
-                return;
+                if (!weddingMusic) {
+                    return;
+                }
+
+                if (weddingMusic.paused) {
+
+                    weddingMusic.play()
+                        .then(function () {
+
+                            musicBtn.textContent =
+                                "🔊";
+
+                        });
+
+                } else {
+
+                    weddingMusic.pause();
+
+                    musicBtn.textContent =
+                        "🔇";
+
+                }
+
             }
+        );
 
-            if (weddingMusic.paused) {
-
-                weddingMusic.play()
-                    .then(function () {
-
-                        musicStarted = true;
-                        musicBtn.textContent = "🔊";
-
-                    });
-
-            } else {
-
-                weddingMusic.pause();
-                musicBtn.textContent = "🔇";
-
-            }
-
-        });
     }
 
 
@@ -122,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // Show invitation sections
+        // Show sections
         if (welcome) {
             welcome.classList.remove("hidden");
         }
@@ -136,11 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // Start from Welcome
+        // Start from top
         window.scrollTo(0, 0);
 
 
-        // Start auto scroll after 1.8 seconds
+        // Start auto scroll
         setTimeout(function () {
 
             startAutoScroll();
@@ -151,16 +165,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ===============================
-    // OPEN INVITATION BUTTON
+    // OPEN INVITATION
     // ===============================
 
     if (openInvitation) {
 
-        openInvitation.addEventListener("click", function () {
+        openInvitation.addEventListener(
+            "click",
+            function (event) {
 
-            showInvitation();
+                event.preventDefault();
 
-        });
+                showInvitation();
+
+            }
+        );
 
     }
 
@@ -171,20 +190,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function startAutoScroll() {
 
-        if (autoScrolling) {
-            return;
-        }
-
-        if (!rsvp) {
+        if (autoScrolling || !rsvp) {
             return;
         }
 
         autoScrolling = true;
 
-        const startPosition = window.scrollY;
-        const targetPosition = rsvp.offsetTop;
+        const startPosition =
+            window.scrollY;
 
-        const distance = targetPosition - startPosition;
+        const targetPosition =
+            rsvp.offsetTop;
+
+        const distance =
+            targetPosition - startPosition;
 
         if (distance <= 0) {
 
@@ -194,10 +213,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // 34 seconds
         const duration = 34000;
 
-        const startTime = performance.now();
+        const startTime =
+            performance.now();
 
 
         function animate(currentTime) {
@@ -206,15 +225,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const elapsed = currentTime - startTime;
+            const elapsed =
+                currentTime - startTime;
 
-            const progress = Math.min(
-                elapsed / duration,
-                1
-            );
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
 
 
-            // Smooth movement
             const easedProgress =
                 progress < 0.5
                     ? 2 * progress * progress
@@ -251,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
                 autoScrolling = false;
+
                 autoScrollFrame = null;
 
             }
@@ -299,9 +320,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateCountdown() {
 
-        const now = new Date().getTime();
+        const now =
+            new Date().getTime();
 
-        const distance = weddingDate - now;
+        const distance =
+            weddingDate - now;
 
 
         const daysElement =
@@ -392,89 +415,106 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-// ===============================
-// RSVP
-// ===============================
+    // ===============================
+    // RSVP
+    // ===============================
 
-if (submitBtn) {
+    if (submitBtn) {
 
-    submitBtn.addEventListener(
-        "click",
-        function (event) {
+        submitBtn.addEventListener(
+            "click",
+            function (event) {
 
-            event.preventDefault();
+                event.preventDefault();
 
-            // Stop auto scroll
-            stopAutoScroll();
-
-            // Get name
-            const fullName =
-                document
-                    .getElementById("fullName")
-                    .value
-                    .trim();
-
-            // Get wish
-            const wish =
-                document
-                    .getElementById("wish")
-                    .value
-                    .trim();
+                stopAutoScroll();
 
 
-            // ===============================
-            // VALIDATION
-            // ===============================
+                const nameInput =
+                    document.getElementById("fullName");
 
-            if (!fullName) {
+                const wishInput =
+                    document.getElementById("wish");
 
-                alert("Please enter your name.");
 
-                return;
+                const fullName =
+                    nameInput
+                        ? nameInput.value.trim()
+                        : "";
+
+
+                const wish =
+                    wishInput
+                        ? wishInput.value.trim()
+                        : "";
+
+
+                // ===============================
+                // NAME REQUIRED
+                // ===============================
+
+                if (!fullName) {
+
+                    alert(
+                        "Please enter your name."
+                    );
+
+                    return;
+
+                }
+
+
+                // ===============================
+                // SENDING
+                // ===============================
+
+                submitBtn.disabled = true;
+
+                submitBtn.textContent =
+                    "Sending...";
+
+
+                fetch(
+                    "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
+                    {
+                        method: "POST",
+
+                        mode: "no-cors",
+
+                        body: JSON.stringify({
+
+                            fullName: fullName,
+
+                            wish: wish
+
+                        })
+
+                    }
+                )
+                .then(function () {
+
+                    showThankYou();
+
+                })
+                .catch(function () {
+
+                    alert(
+                        "Something went wrong."
+                    );
+
+                    submitBtn.disabled = false;
+
+                    submitBtn.textContent =
+                        "Submit";
+
+                });
 
             }
+        );
+
+    }
 
 
-            // ===============================
-            // SENDING
-            // ===============================
-
-            submitBtn.disabled = true;
-
-            submitBtn.textContent = "Sending...";
-
-
-            fetch(
-                "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
-                {
-                    method: "POST",
-                    mode: "no-cors",
-
-                    body: JSON.stringify({
-                        fullName: fullName,
-                        wish: wish
-                    })
-                }
-            )
-            .then(function () {
-
-                showThankYou();
-
-            })
-            .catch(function () {
-
-                alert("Something went wrong.");
-
-                submitBtn.disabled = false;
-
-                submitBtn.textContent = "Submit";
-
-            });
-
-        }
-    );
-
-}
     // ===============================
     // SHOW THANK YOU
     // ===============================
@@ -488,17 +528,14 @@ if (submitBtn) {
 
         if (thankyou) {
 
-            thankyou.classList.remove(
-                "hidden"
-            );
+            thankyou.classList.remove("hidden");
 
-            thankyou.style.display =
-                "flex";
+            thankyou.style.display = "flex";
 
         }
 
 
-        // Create petals
+        // Petals
         for (
             let i = 0;
             i < 30;
@@ -513,7 +550,7 @@ if (submitBtn) {
         }
 
 
-        // Scroll to Thank You
+        // Scroll
         if (thankyou) {
 
             thankyou.scrollIntoView({
@@ -589,9 +626,7 @@ if (submitBtn) {
             ) + "s";
 
 
-        container.appendChild(
-            petal
-        );
+        container.appendChild(petal);
 
 
         setTimeout(
