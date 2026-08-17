@@ -522,15 +522,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                if (!attend) {
-
-                    alert(
-                        "Please choose Yes or No."
-                    );
-
-                    return;
-
-                }
+                
 
 
                 // ===============================
