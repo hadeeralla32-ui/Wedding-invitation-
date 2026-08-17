@@ -392,96 +392,89 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    // ===============================
-    // RSVP
-    // ===============================
+// ===============================
+// RSVP
+// ===============================
 
-    if (submitBtn) {
+if (submitBtn) {
 
-        submitBtn.addEventListener(
-            "click",
-            function (event) {
+    submitBtn.addEventListener(
+        "click",
+        function (event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
+            // Stop auto scroll
+            stopAutoScroll();
 
-                // Stop auto scroll
-                stopAutoScroll();
+            // Get name
+            const fullName =
+                document
+                    .getElementById("fullName")
+                    .value
+                    .trim();
 
-
-                // Get name
-                const fullName =
-                    document
-                        .getElementById("fullName")
-                        .value
-                        .trim();
-
-
-                // Get wish
-                const wish =
-                    document
-                        .getElementById("wish")
-                        .value
-                        .trim();
+            // Get wish
+            const wish =
+                document
+                    .getElementById("wish")
+                    .value
+                    .trim();
 
 
-                // ===============================
-                // VALIDATION
-                // ===============================
+            // ===============================
+            // VALIDATION
+            // ===============================
 
-                if (!fullName) {
+            if (!fullName) {
 
-                    alert(
-                        "Please enter your name."
-                    );
+                alert("Please enter your name.");
 
-                    return;
-
-                }
-
-
-                // ===============================
-                // SENDING
-                // ===============================
-
-                submitBtn.disabled = true;
-
-                submitBtn.textContent =
-                    "Sending...";
-
-
-                fetch(
-    "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
-    {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify({
-            fullName: fullName,
-            wish: wish
-        })
-    }
-);
-
-showThankYou();
-                .catch(function () {
-
-                    alert(
-                        "Something went wrong."
-                    );
-
-                    submitBtn.disabled = false;
-
-                    submitBtn.textContent =
-                        "Submit";
-
-                });
+                return;
 
             }
-        );
-
-    }
 
 
+            // ===============================
+            // SENDING
+            // ===============================
+
+            submitBtn.disabled = true;
+
+            submitBtn.textContent = "Sending...";
+
+
+            fetch(
+                "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
+                {
+                    method: "POST",
+                    mode: "no-cors",
+
+                    body: JSON.stringify({
+                        fullName: fullName,
+                        wish: wish
+                    })
+                }
+            )
+            .then(function () {
+
+                showThankYou();
+
+            })
+            .catch(function () {
+
+                alert("Something went wrong.");
+
+                submitBtn.disabled = false;
+
+                submitBtn.textContent = "Submit";
+
+            });
+
+        }
+    );
+
+}
     // ===============================
     // SHOW THANK YOU
     // ===============================
