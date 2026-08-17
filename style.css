@@ -21,7 +21,9 @@ html{
 }
 
 body{
-    background:url("Cover.jpg") center center / cover no-repeat fixed;
+    background:url("Cover.jpg") center center / cover no-repeat;
+    background-attachment:scroll;
+    background-color:#fcfaf7;
     color:var(--text);
     font-family:'Cormorant Garamond',serif;
     overflow-x:hidden;
