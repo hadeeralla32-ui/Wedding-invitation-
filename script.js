@@ -605,43 +605,129 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     // ===============================
-                    // SCROLL TO THANK YOU
-                    // ===============================
+// ===============================
+// RSVP
+// ===============================
 
-                    if (thankyou) {
+if (submitBtn) {
 
-                        thankyou.scrollIntoView({
-                            behavior: "smooth"
-                        });
+    submitBtn.addEventListener(
+        "click",
+        function (event) {
 
-                    }
+            event.preventDefault();
 
-                })
+            // Stop auto scroll
+            stopAutoScroll();
+
+            const fullName =
+                document
+                    .getElementById("fullName")
+                    .value
+                    .trim();
+
+            const wish =
+                document
+                    .getElementById("wish")
+                    .value
+                    .trim();
 
 
-                .catch(function () {
+            // ===============================
+            // VALIDATION
+            // ===============================
 
-                    alert(
-                        "Something went wrong."
-                    );
+            if (!fullName) {
 
-                })
+                alert("Please enter your name.");
 
-
-                .finally(function () {
-
-                    submitBtn.disabled =
-                        false;
-
-                    submitBtn.textContent =
-                        "Submit";
-
-                });
+                return;
 
             }
-        );
 
-    }
+
+            // ===============================
+            // SENDING
+            // ===============================
+
+            submitBtn.disabled = true;
+
+            submitBtn.textContent = "Sending...";
+
+
+            fetch(
+                "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
+                {
+                    method: "POST",
+                    mode: "no-cors",
+
+                    body: JSON.stringify({
+
+                        fullName: fullName,
+
+                        wish: wish
+
+                    })
+
+                }
+            );
+
+
+            // ===============================
+            // SHOW THANK YOU
+            // ===============================
+
+            setTimeout(function () {
+
+                if (rsvp) {
+                    rsvp.style.display = "none";
+                }
+
+                if (thankyou) {
+
+                    thankyou.classList.remove("hidden");
+
+                    thankyou.style.display = "flex";
+
+                }
+
+
+                // ===============================
+                // PETALS
+                // ===============================
+
+                for (
+                    let i = 0;
+                    i < 30;
+                    i++
+                ) {
+
+                    setTimeout(
+                        createPetal,
+                        i * 250
+                    );
+
+                }
+
+
+                // ===============================
+                // SCROLL TO THANK YOU
+                // ===============================
+
+                if (thankyou) {
+
+                    thankyou.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }, 1200);
+
+        }
+    );
+
+}
 
 
     // ===============================
