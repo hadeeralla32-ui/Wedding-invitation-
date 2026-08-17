@@ -544,3 +544,21 @@ h3{
 #thankyou{
     margin-top:-20vh;
 }
+/* =========================
+   COVER — REDUCE BOTTOM SPACE
+========================= */
+
+.cover{
+    min-height:100vh;
+    align-items:flex-start;
+    padding-top:90px;
+    padding-bottom:40px;
+}
+
+.cover .content{
+    transform:translateY(0);
+}
+
+#openInvitation{
+    margin-bottom:0;
+}
