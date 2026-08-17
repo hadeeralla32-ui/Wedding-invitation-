@@ -451,31 +451,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 fetch(
-                    "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
-                    {
-                        method: "POST",
+    "https://script.google.com/macros/s/AKfycbxgbos5vqFnMuqHUOtrSFbFArca3dHQwjJVIRswLaBsiwtxwXGckQsxaTzYvpvGToew/exec",
+    {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
+            fullName: fullName,
+            wish: wish
+        })
+    }
+);
 
-                        mode: "no-cors",
-
-                        body: JSON.stringify({
-
-                            fullName: fullName,
-
-                            wish: wish
-
-                        })
-
-                    }
-                )
-                .then(function () {
-
-    setTimeout(function () {
-
-        showThankYou();
-
-    }, 500);
-
-})
+showThankYou();
                 .catch(function () {
 
                     alert(
