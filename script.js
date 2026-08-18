@@ -238,15 +238,7 @@ window.addEventListener(
         const startPosition =
             window.scrollY;
 
-        const maxScroll =
-    document.documentElement.scrollHeight -
-    window.innerHeight;
-
-const targetPosition =
-    Math.min(
-        rsvp.offsetTop,
-        maxScroll
-    );
+        const targetPosition = rsvp.offsetTop;
 
         const distance =
             targetPosition - startPosition;
