@@ -30,7 +30,46 @@ document.addEventListener("DOMContentLoaded", function () {
     let autoScrolling = false;
     let autoScrollFrame = null;
 
+// ===============================
+// PREVENT WHITE OVERSCROLL
+// iPhone + Android
+// ===============================
 
+let lastScrollY = 0;
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        const maxScroll =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+        if (window.scrollY < 0) {
+
+            window.scrollTo(
+                0,
+                0
+            );
+
+            return;
+        }
+
+        if (window.scrollY > maxScroll) {
+
+            window.scrollTo(
+                0,
+                maxScroll
+            );
+
+            return;
+        }
+
+        lastScrollY = window.scrollY;
+
+    },
+    { passive:false }
+);
     // ===============================
     // GUEST NAME
     // ===============================
@@ -199,8 +238,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const startPosition =
             window.scrollY;
 
-        const targetPosition =
-            rsvp.offsetTop;
+        const maxScroll =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+const targetPosition =
+    Math.min(
+        rsvp.offsetTop,
+        maxScroll
+    );
 
         const distance =
             targetPosition - startPosition;
