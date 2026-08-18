@@ -40,9 +40,11 @@ body{
 body::before{
     content:"";
     position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    height:100dvh;
     background:url("Cover3.jpg") center center / cover no-repeat;
     z-index:-1;
     pointer-events:none;
@@ -637,11 +639,17 @@ h3{
     }
 
     }
-html{
-    overscroll-behavior-y:none;
+html,
+body{
+    width:100%;
+    min-height:100%;
+    margin:0;
+    padding:0;
+    background:transparent;
+    overscroll-behavior:none;
 }
 
 body{
-    overscroll-behavior-y:none;
-    background:#fcfaf7;
+    position:relative;
+    overflow-x:hidden;
 }
