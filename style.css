@@ -618,38 +618,3 @@ h3{
     }
 
 }
-
-
-/* =========================
-   MOBILE SCREEN HEIGHT FIX
-========================= */
-
-@supports (-webkit-touch-callout:none){
-
-    .screen{
-        min-height:100svh;
-    }
-
-}
-
-@supports not (-webkit-touch-callout:none){
-
-    .screen{
-        min-height:100dvh;
-    }
-
-    }
-html,
-body{
-    width:100%;
-    min-height:100%;
-    margin:0;
-    padding:0;
-    background:transparent;
-    overscroll-behavior:none;
-}
-
-body{
-    position:relative;
-    overflow-x:hidden;
-}
