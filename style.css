@@ -637,3 +637,11 @@ h3{
     }
 
     }
+html{
+    overscroll-behavior-y:none;
+}
+
+body{
+    overscroll-behavior-y:none;
+    background:#fcfaf7;
+}
